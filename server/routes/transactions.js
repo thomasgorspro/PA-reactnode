@@ -1,0 +1,29 @@
+import express from "express";
+import { Transaction } from "../models/Transaction";
+
+const router = express.Router();
+
+router
+  // CGET all transactions
+  .get("/", (req, res) => {
+    Transaction.find(req.query).then((data) => res.json(data));
+  })
+
+  // POST a transaction
+  .post("/", (req, res) => {
+    const transaction = new Transaction(req.body);
+    transaction.save().then((data) => res.status(201).json(transaction));
+  })
+
+  // GET a transaction
+  .get("/:id", (req, res) => {
+    Transaction.findById(req.params.id).then((data) => res.json(data));
+  })
+
+  // GET all operations of a transaction
+  .get("/:id/operations", (req, res) => {})
+
+  // GET an operation of a transaction
+  .get("/:id/operations/:id_op", (req, res) => {});
+
+export default router;

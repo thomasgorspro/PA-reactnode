@@ -58,7 +58,7 @@ services:
     working_dir: '/home/node/app'
     tty: true
     stdin_open: true
-    command: 'yarn start'
+    command: 'npm start'
     ports:
       - 127.0.0.1:3001:3000
 

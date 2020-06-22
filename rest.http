@@ -10,7 +10,6 @@ Accept: application/json
     "email": "customer.email@email.com"
   },
   "Billing": {
-    "MethodOfPayment": "Visa",
     "BillingAddress": {
       "Firstname": "Jean",
       "Lastname": "Bon",
@@ -21,7 +20,7 @@ Accept: application/json
     }
   },
   "Shipping": "Fast delivery",
-  "ShoppingCart": ["article 1", "article 2"],
+  "ShoppingCart": ["article 1", "article 2", "article 3"],
   "Price": "15€"
 }
 

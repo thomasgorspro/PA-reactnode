@@ -1,13 +1,26 @@
-import express from 'express';
+import express from "express";
+import { Transaction } from "../models/Transaction";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.render('index');
-})
+router
+  .get("/", (req, res) => {
+    res.render("index");
+  })
 
-router.get("/confirm", (req, res) => {
-  res.render('confirmedOrder');  
-})
+  .get("/confirm", (req, res) => {
+    res.render("confirmedOrder");
+  })
+
+  // CGET all transactions
+  .get("/orders", (req, res) => {
+    Transaction.find(req.query).then((data) => {
+      res.render("ordersList", { orders: data });
+    });
+  })
+
+  .get("/login", (req, res) => {
+    res.render("login");
+  })
 
 export default router;

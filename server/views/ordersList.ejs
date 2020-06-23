@@ -1,0 +1,45 @@
+<%- include('templates/header') %>
+<section class="flex justify-center">
+
+  <div class="container w-full md:w-4/5 xl:w-3/5  mx-auto px-2">
+    <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+      <table id="order-table" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+        <thead>
+          <tr>
+            <th data-priority="1">ID</th>
+            <th data-priority="2">Email</th>
+            <th data-priority="3">Price</th>
+            <th data-priority="4">Refund</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% orders.forEach((order, index) => { %>
+
+          <tr>
+            <td><%= index %></td>
+            <td><%= order.Customer.email %></td>
+            <td><%= order.price %></td>
+            <td>
+              <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                Refund
+              </button>
+            </td>
+          </tr>
+
+          <% }); %>
+
+        </tbody>
+
+      </table>
+
+
+    </div>
+
+</section>
+
+<script type="application/javascript">
+  var dataTable = new DataTable("#order-table", {
+    responsive: true,
+  });
+</script>
+<%- include('templates/footer') %>

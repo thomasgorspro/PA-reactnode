@@ -11,27 +11,29 @@ const sendData = (data) => {
     }).then((res) => res.json());
   };
 
-  checkout.addEventListener('click', () => {
-    sendData({
-      "Customer": {
-        "email": "customer.email@email.com"
-      },
-      "Billing": {
-        "MethodOfPayment": "Visa",
-        "BillingAddress": {
-          "Firstname": "Jean",
-          "Lastname": "Bon",
-          "Address": "68 Place Charles de Gaulle",
-          "City": "VILLENEUVE-D",
-          "Zipcode": "59791",
-          "Country": "France"
-        }
-      },
-      "Shipping": "Fast delivery",
-      "ShoppingCart": ["article 1", "article 2"],
-      "Price": "15€"
+  if (checkout) {
+    checkout.addEventListener('click', () => {
+      sendData({
+        "Customer": {
+          "email": "customer.email@email.com"
+        },
+        "Billing": {
+          "MethodOfPayment": "Visa",
+          "BillingAddress": {
+            "Firstname": "Jean",
+            "Lastname": "Bon",
+            "Address": "68 Place Charles de Gaulle",
+            "City": "VILLENEUVE-D",
+            "Zipcode": "59791",
+            "Country": "France"
+          }
+        },
+        "Shipping": "Fast delivery",
+        "ShoppingCart": ["article 1", "article 2"],
+        "Price": "15€"
+      });
     });
-  });
+  }
 </script>
 </body>
 

@@ -7,7 +7,6 @@ const Schema = new mongoose.Schema(
       email: String
     },
     Billing: {
-      MethodOfPayment: String,
       BillingAddress: {
         Firstname: String,
         Lastname: String,

@@ -21,8 +21,11 @@ Accept: application/json
   },
   "Shipping": "Fast delivery",
   "ShoppingCart": ["article 1", "article 2", "article 3"],
-  "Price": "15€"
+  "Price": "17,859.3€"
 }
 
 ###
 GET http://localhost:3000/transactions/5ed50d427915a1022f901435
+
+###
+DELETE http://localhost:3000/transactions/5ef3645795a2fa00ec1d56ea

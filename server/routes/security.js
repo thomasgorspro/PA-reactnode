@@ -43,7 +43,7 @@ router.post("/login_check", (req, res) => {
 });
 
 // POST
-router.post("/merchant", (req, res) => {
+router.post("/register", (req, res) => {
   Merchant.create(req.body)
     .then((data) => res.status(201).json(data))
     .catch((error) => {

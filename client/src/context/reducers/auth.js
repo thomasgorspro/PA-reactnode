@@ -14,6 +14,11 @@ export const reducer = (state, action) => {
         ...state,
         ...action.payload,
       };
+    case "REGISTER":
+      return {
+        ...state,
+        ...action.payload
+      } 
     default:
       return state;
   }

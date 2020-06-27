@@ -1,7 +1,7 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
 
-function Login() {
+const Login = () => {
   const { selectors, actions } = useAuth();
 
   function onSubmit(event) {
@@ -20,7 +20,7 @@ function Login() {
         <label for="email">Email</label>
         <input
           id="email"
-          type="text"
+          type="email"
           placeholder="email"
           name="email"
         ></input>

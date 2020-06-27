@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import jwtDecode from "jwt-decode";
 import RootContext from "../context/rootContext";
-import { login } from "../context/actions/auth";
+import { login, register } from "../context/actions/auth";
 
 const useAuth = () => {
   const {
@@ -22,6 +22,16 @@ const useAuth = () => {
             token: data.token,
           },
         });
+      });
+    },
+    logout: (data) => {
+    },
+    register: (data) =>  {
+      register(data).then((data) => {
+        console.log(data);
+        dispatch({
+          type: "REGISTER",
+        })
       });
     },
   };

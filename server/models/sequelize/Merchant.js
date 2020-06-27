@@ -1,6 +1,6 @@
-import sequelize from "../../lib/sequelize";
-import { DataTypes, Model } from "sequelize";
-import bcrypt from "bcryptjs";
+const sequelize = require("../../lib/sequelize");
+const { DataTypes, Model } = require("sequelize");
+const bcrypt = require("bcryptjs");
 
 const { STRING, BOOLEAN } = DataTypes;
 class Merchant extends Model {}
@@ -77,4 +77,4 @@ Merchant.sync({
   force: true,
 });
 
-export default Merchant;
+module.exports = Merchant;

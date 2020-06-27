@@ -1,6 +1,6 @@
-import express from "express";
-import Merchant from "../models/sequelize/Merchant";
-import { ValidationError } from "sequelize";
+const express = require("express");
+const { Merchant } = require("../models/sequelize");
+const { ValidationError } = require("sequelize");
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   Merchant.findAll({
     where: req.query,
     attributes: [
-        "name", "KBIS", "currency", "email", 
+        "compagnyName", "KBIS", "currency", "email", 
         "phone", "confirmationURL", "redirectionURL", "confirmed"
     ],
   })

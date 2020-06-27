@@ -1,4 +1,4 @@
-import { verifyToken as JWTVerifyToken } from "../lib/auth";
+const { verifyToken: JWTVerifyToken } = require("../lib/auth");
 
 const verifyToken = (req, res, next) => {
   let authHeader = req.get("Authorization");
@@ -16,4 +16,4 @@ const verifyToken = (req, res, next) => {
     .catch(() => res.sendStatus(401));
 };
 
-export default verifyToken;
+module.exports = verifyToken;

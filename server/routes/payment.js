@@ -1,6 +1,6 @@
-import express from "express";
-import { Transaction } from "../models/Transaction";
-import fetch from "node-fetch";
+const express = require("express");
+const { Transaction } = require("../models/Transaction");
+const fetch = require("node-fetch");
 
 const router = express.Router();
 
@@ -14,4 +14,4 @@ router
     fetch("http://localhost:3000/psp").then((data) => res.send(data));
   });
 
-export default router;
+module.exports = router;

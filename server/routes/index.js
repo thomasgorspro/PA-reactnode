@@ -1,8 +1,8 @@
-import TransactionRouter from "./transactions";
-import ShopRouter from "./shop";
+const TransactionRouter = require("./transactions");
+const ShopRouter = require("./shop");
 // import UserRouter from "./users";
-import PaymentRouter from "./payment";
-import PspRouter from "./psp";
+const PaymentRouter = require("./payment");
+const PspRouter = require("./psp");
 
 const RouterManager = (app) => {
   app
@@ -13,4 +13,4 @@ const RouterManager = (app) => {
     .use('/psp', PspRouter)
 }
 
-export default RouterManager;
+module.exports = RouterManager;

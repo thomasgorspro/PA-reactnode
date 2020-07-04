@@ -1,5 +1,5 @@
-import express from "express";
-import { Transaction } from "../models/Transaction";
+const express = require("express");
+const Transaction = require("../models/Transaction");
 
 const router = express.Router();
 
@@ -37,4 +37,4 @@ router
   // GET an operation of a transaction
   .get("/:id/operations/:id_op", (req, res) => {});
 
-export default router;
+module.exports = router;

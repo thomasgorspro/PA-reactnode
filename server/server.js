@@ -1,6 +1,6 @@
-import express from "express";
-import RouterManager from "./routes";
-import path from 'path';
+const express = require("express");
+const RouterManager = require("./routes");
+const path = require('path');
 
 const app = express();
 

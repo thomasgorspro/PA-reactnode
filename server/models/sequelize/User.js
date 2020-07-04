@@ -1,6 +1,7 @@
-import sequelize from "../../lib/sequelize";
-import { DataTypes, Model } from "sequelize";
-import bcrypt from "bcryptjs";
+const sequelize = require("../../lib/sequelize");
+const { DataTypes, Model } = require("sequelize");
+const bcrypt = require ("bcryptjs");
+
 class User extends Model {}
 User.init(
   {
@@ -44,4 +45,4 @@ User.sync({
   force: true,
 });
 
-export default User;
+module.exports = User;

@@ -72,9 +72,4 @@ Merchant.addHook('beforeCreate', async (merchant, options) => {
   merchant.password = await bcrypt.hash(merchant.password, salt);
 });
 
-// Schema update
-Merchant.sync({
-  force: true,
-});
-
 module.exports = Merchant;

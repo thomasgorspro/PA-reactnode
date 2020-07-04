@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const { createToken } = require("../lib/auth");
-const Merchant = require("../models/sequelize/Merchant");
+const { Merchant } = require("../models/sequelize");
 
 const router = express.Router();
 

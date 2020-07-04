@@ -1,5 +1,5 @@
 const express = require("express");
-const Transaction = require("../models/Transaction");
+const Transaction = require("../models/mongoose/Transaction");
 const router = express.Router();
 
 router

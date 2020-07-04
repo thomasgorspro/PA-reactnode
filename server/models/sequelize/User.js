@@ -40,9 +40,4 @@ User.addHook('beforeCreate', async (user, options) => {
   user.password = await bcrypt.hash(user.password, salt);
 });
 
-// Schema update
-User.sync({
-  force: true,
-});
-
 module.exports = User;

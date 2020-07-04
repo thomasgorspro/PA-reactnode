@@ -1,5 +1,5 @@
 const Scrapper = require('./lib/scrapper');
-const Currency = require('./models/Currency');
+const Currency = require('./models/mongoose/Currency');
 
 const scrapper = new Scrapper("https://api.exchangeratesapi.io/latest", {}, 
     data => {

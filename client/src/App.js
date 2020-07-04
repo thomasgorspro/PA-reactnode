@@ -7,28 +7,17 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 
 const App = () => (
-  <div>
+  <div className="App">
       <a href="/login">Login</a><br />
       <a href="/register">Register</a>
-  <Router>
-    <Switch>
-      <Route path="/login">
-        <ThemeWrapper>
-          <RootProvider>
-            <Login />
-          </RootProvider>
-        </ThemeWrapper>
-      </Route>
-
-      <Route path="/register">
-        <ThemeWrapper>
-          <RootProvider>
-            <Register />
-          </RootProvider>
-        </ThemeWrapper>
-      </Route>
-    </Switch>
-  </Router>
+    <ThemeWrapper>
+        <RootProvider>
+          <Router>
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+          </Router>
+      </RootProvider>
+    </ThemeWrapper>
   </div>
 );
 

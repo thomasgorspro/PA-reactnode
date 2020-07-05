@@ -119,7 +119,7 @@
                 <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
                   Total
                 </div>
-                <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
+                <div id="totalPrice" class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
                   17,859.3€
                 </div>
               </div>
@@ -184,8 +184,14 @@
     if (window.focus) newWindow.focus();
   }
 
+  const resultEarphone = document.getElementById("resultEarphone");
+  const resultTesla = document.getElementById("resultTesla");
+  const resultBic = document.getElementById("resultBic");
+  const totalPrice = document.getElementById("totalPrice");
+
   if (checkout) {
     checkout.addEventListener('click', async () => {
+
       await sendData({
         "Customer": {
           "email": "customer.email@email.com"
@@ -202,11 +208,11 @@
         },
         "Shipping": "Fast delivery",
         "ShoppingCart": [
-          { "name": "article 1", "price": "15€", "refunded": "false" },
-          { "name": "article 2", "price": "20€", "refunded": "true" },
-          { "name": "article 3", "price": "30€", "refunded": "false" }
+          { "name": "Earphone", "price": resultEarphone.textContent, "refunded": "false" },
+          { "name": "Tesla", "price": resultTesla.textContent, "refunded": "false" },
+          { "name": "Stylo Bic", "price": resultBic.textContent, "refunded": "false" }
         ],
-        "TotalPrice": "65€"
+        "TotalPrice": totalPrice.innerHTML
       }).then(data =>
         popupCenter({
           url: data.redirectUrl,
@@ -217,12 +223,6 @@
     });
   }
 
-  const resultEarphone = document.getElementById("resultEarphone")
-  const resultTesla = document.getElementById("resultTesla")
-  const resultBic = document.getElementById("resultBic")
-
-
-  console.log(resultEarphone)
   const inputEarphone = document.getElementById("quantityEarphone")
   inputEarphone.addEventListener('keyup', (e) => {
     const price = 10;
@@ -252,9 +252,16 @@
   });
 
   const calculPrice = (input, result, price) => {
-    result.innerHTML = (input.value * price) + "€";
+    result.innerHTML = (parseFloat(input.value) * price) + "€";
+    updateTotalPrice();
   }
 
-  console.log(inputBic, inputEarphone, inputTesla)
+  const updateTotalPrice = () => {
+    const total =
+            parseFloat(resultEarphone.textContent.substr(0, resultEarphone.textContent.length - 1))
+            + parseFloat(resultTesla.textContent.substr(0, resultTesla.textContent.length - 1))
+            + parseFloat(resultBic.textContent.substr(0, resultBic.textContent.length - 1));
+    totalPrice.innerHTML = total + "€";
+  }
 </script>
 <%- include('templates/footer') %>

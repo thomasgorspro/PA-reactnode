@@ -1,5 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
+const { ValidationError } = require("sequelize");
+
 const { createToken } = require("../lib/auth");
 const { Merchant } = require("../models/sequelize");
 
@@ -29,8 +31,7 @@ router.post("/login_check", (req, res) => {
       createToken({ email: merchant.email}).then((token) => {
           console.log({ token });
           return res.json({ token })
-      }
-      )
+      })
     )
     .catch((err) =>
       err === "invalid"

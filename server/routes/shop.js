@@ -19,8 +19,14 @@ router
     });
   })
 
+  .get("/orders/:id", (req, res) => {
+    Transaction.findById(req.params.id).then((data) => {
+        res.render("orderView", { order: data })
+    })
+  })
+
   .get("/login", (req, res) => {
     res.render("login");
-  })
+  });
 
 export default router;

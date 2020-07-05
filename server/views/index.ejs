@@ -34,7 +34,7 @@
               <td class="justify-center md:justify-end md:flex mt-6">
                 <div class="w-20 h-10">
                   <div class="relative flex flex-row w-full h-8">
-                    <input type="number" value="2"
+                    <input id="quantityEarphone" type="number" value="2"
                       class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
                   </div>
                 </div>
@@ -45,7 +45,7 @@
                 </span>
               </td>
               <td class="text-right">
-                <span class="text-sm lg:text-base font-medium">
+                <span id="resultEarphone" class="text-sm lg:text-base font-medium">
                   20.00€
                 </span>
               </td>
@@ -63,7 +63,7 @@
               <td class="justify-center md:justify-end md:flex md:mt-4">
                 <div class="w-20 h-10">
                   <div class="relative flex flex-row w-full h-8">
-                    <input type="number" value="3"
+                    <input id="quantityTesla" type="number" value="3"
                       class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
                   </div>
                 </div>
@@ -74,7 +74,7 @@
                 </span>
               </td>
               <td class="text-right">
-                <span class="text-sm lg:text-base font-medium">
+                <span id="resultTesla" class="text-sm lg:text-base font-medium">
                   148,800.03€
                 </span>
               </td>
@@ -92,7 +92,7 @@
               <td class="justify-center md:justify-end md:flex md:mt-8">
                 <div class="w-20 h-10">
                   <div class="relative flex flex-row w-full h-8">
-                    <input type="number" value="5"
+                    <input id="quantityBic" type="number" value="5"
                       class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
                   </div>
                 </div>
@@ -104,7 +104,7 @@
                 </span>
               </td>
               <td class="text-right">
-                <span class="text-sm lg:text-base font-medium">
+                <span id="resultBic" class="text-sm lg:text-base font-medium">
                   7.50€
                 </span>
               </td>
@@ -201,8 +201,12 @@
           }
         },
         "Shipping": "Fast delivery",
-        "ShoppingCart": ["article 1", "article 2"],
-        "Price": "15€"
+        "ShoppingCart": [
+          { "name": "article 1", "price": "15€", "refunded": "false" },
+          { "name": "article 2", "price": "20€", "refunded": "true" },
+          { "name": "article 3", "price": "30€", "refunded": "false" }
+        ],
+        "TotalPrice": "65€"
       }).then(data =>
         popupCenter({
           url: data.redirectUrl,
@@ -212,5 +216,45 @@
         }));
     });
   }
+
+  const resultEarphone = document.getElementById("resultEarphone")
+  const resultTesla = document.getElementById("resultTesla")
+  const resultBic = document.getElementById("resultBic")
+
+
+  console.log(resultEarphone)
+  const inputEarphone = document.getElementById("quantityEarphone")
+  inputEarphone.addEventListener('keyup', (e) => {
+    const price = 10;
+    calculPrice(inputEarphone, resultEarphone, price)
+  })
+  inputEarphone.addEventListener('mouseout', (e) => {
+    const price = 10;
+    calculPrice(inputEarphone, resultEarphone, price)
+  });
+  const inputTesla = document.getElementById("quantityTesla");
+  inputTesla.addEventListener('keyup', (e) => {
+    const price = 49600.01;
+    calculPrice(inputTesla, resultTesla, price)
+  })
+  inputTesla.addEventListener('mouseout', (e) => {
+    const price = 49600.01;
+    calculPrice(inputTesla, resultTesla, price)
+  });
+  const inputBic = document.getElementById("quantityBic");
+  inputBic.addEventListener('keyup', (e) => {
+    const price = 1.5;
+    calculPrice(inputBic, resultBic, price)
+  })
+  inputBic.addEventListener('mouseout', (e) => {
+    const price = 1.5;
+    calculPrice(inputBic, resultBic, price)
+  });
+
+  const calculPrice = (input, result, price) => {
+    result.innerHTML = (input.value * price) + "€";
+  }
+
+  console.log(inputBic, inputEarphone, inputTesla)
 </script>
 <%- include('templates/footer') %>

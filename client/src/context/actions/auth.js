@@ -5,9 +5,7 @@ export const login = (data) => {
     headers: {
         "Content-Type": "application/json"
     }
-  })
-  .then((res) => res.json())
-  .catch(err => err);
+  }).then((res) => res.json());
 };
 
 export const register = (data) => {
@@ -17,7 +15,5 @@ export const register = (data) => {
     headers: {
         "Content-Type": "application/json"
     }
-  })
-  .then((res) => res.json())
-  .catch(err => err);
+  }).then((res) => res.json());
 }

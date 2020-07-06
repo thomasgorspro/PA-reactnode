@@ -23,16 +23,19 @@ const useAuth = () => {
         });
       });
     },
-    logout: (data) => {
+    logout: () => {
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
       dispatch({ type: "LOGOUT" });
     },
-    register: (data) =>  {
-      register(data).then((data) => {
-        console.log(data);
-        dispatch({
-          type: "REGISTER",
-        })
+    register: async (data) =>  {
+      const res = await register(data);
+      console.log(res);
+      dispatch({
+        type: "REGISTER",
+        payload: {
+          errors: res?.errors
+        }
       });
     },
   };
@@ -41,6 +44,11 @@ const useAuth = () => {
     isConnected: () => {
       return Boolean(authState.token);
     },
+    user: () => authState.user,
+    errors: () => { 
+      console.log(authState);
+      return authState?.errors
+    }
   };
 
   return { selectors, actions };

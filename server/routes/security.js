@@ -36,9 +36,10 @@ router.post("/login_check", (req, res) => {
     .catch((err) =>
       err === "invalid"
         ? res.status(400).json({
+          errors: {
             username: "Invalid or yet to be validated credentials",
             password: "Invalid or yet to be validated credentials",
-          })
+          }})
         : console.error(err) || res.sendStatus(500)
     );
 });
@@ -46,7 +47,7 @@ router.post("/login_check", (req, res) => {
 // POST
 router.post("/register", (req, res) => {
   Merchant.create(req.body)
-    .then((data) => res.status(201))
+    .then((data) => res.status(201).json({ data }))
     .catch((error) => {
       if (error instanceof ValidationError) {
         const errors = error.errors.reduce((acc, item) => {

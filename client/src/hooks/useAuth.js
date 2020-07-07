@@ -10,17 +10,19 @@ const useAuth = () => {
   } = useContext(RootContext);
 
   const actions = {
-    login: (data) => {
-      login(data).then((data) => {
-        const user = jwtDecode(data.token);
-        localStorage.setItem("token", data.token);
-        dispatch({
-          type: "LOGIN",
-          payload: {
-            user,
-            token: data.token,
-          },
-        });
+    login: async (data) => {
+      const { token, errors } = await login(data);
+      let payload = { errors, token, user: null }; 
+      if(token) {
+        localStorage.setItem("token", token);
+        const { email: user } = jwtDecode(token);
+        payload.user = user; 
+        payload.token = token;
+      }
+      console.log(payload);
+      dispatch({
+        type: "LOGIN",
+        payload
       });
     },
     logout: () => {
@@ -44,11 +46,8 @@ const useAuth = () => {
     isConnected: () => {
       return Boolean(authState.token);
     },
-    user: () => authState.user,
-    errors: () => { 
-      console.log(authState);
-      return authState?.errors
-    }
+    user: () => authState?.user,
+    errors: () => authState?.errors
   };
 
   return { selectors, actions };

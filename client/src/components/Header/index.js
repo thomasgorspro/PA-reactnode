@@ -3,11 +3,15 @@ import useAuth from '../../hooks/useAuth';
 
 const Header = () => {
     const { selectors, actions } = useAuth();
+    const user = selectors.user();
     return (
         <>
-            { 
+            {
                 selectors.isConnected() ?  
-                    <button onClick={actions.logout}>Logout</button>
+                    (<>
+                        <span> Hello { user.email } </span>
+                        <button onClick={actions.logout}>Logout</button>
+                    </>)
                 : 
                     (<>
                         <a href="/login"> Login </a>

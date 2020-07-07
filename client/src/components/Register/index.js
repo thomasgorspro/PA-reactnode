@@ -14,7 +14,8 @@ const Register = () => {
 
     return (
 		<>
-		{selectors.errors() && (
+			{!selectors.errors() && <Redirect to="/login" />}
+			{(Object.keys(selectors.errors()).length) && <span> SOMETHING WENT WRONG. TRY AGAIN LATER </span>}
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<label htmlFor="compagnyName">Compagny Name</label>
 				<input 
@@ -22,7 +23,7 @@ const Register = () => {
 					type="text" 
 					placeholder="Compagny Name" 
 					name="compagnyName"
-					ref={register({ required: { value: true, message: 'Please fill out this field'}})}
+					ref={register({ required: { value: true, message: 'Please fill out this field '}})}
 				></input>
 				{ errors?.compagnyName?.message }
 				<label htmlFor="email">Email</label>
@@ -31,7 +32,7 @@ const Register = () => {
 					type="email" 
 					placeholder="email" 
 					name="email"
-					ref={register({ required: { value: true, message: 'Please fill out this field'}})}
+					ref={register({ required: { value: true, message: 'Please fill out this field '}})}
 				></input>
 				{ errors?.email?.message }
 
@@ -42,8 +43,8 @@ const Register = () => {
 					placeholder="password" 
 					name="password"
 					ref={register({ 
-						required: { value: true, message: 'Please fill out this field'},
-						minLength: {value: 3, message: 'The minlength is 3'}
+						required: { value: true, message: 'Please fill out this field '},
+						minLength: {value: 3, message: 'The minlength is 3 '}
 					})}
 				></input>
 				{ errors?.password?.message }
@@ -55,9 +56,9 @@ const Register = () => {
 					placeholder="KBIS" 
 					name="KBIS" 
 					ref={register({ 
-						required: { value: true, message: 'Please fill out this field'},
-						minLength: {value: 3, message: 'The minlength is 3'},
-						maxLength: {value: 10, message: 'The maxlength is 10'}
+						required: { value: true, message: 'Please fill out this field '},
+						minLength: {value: 3, message: 'The minlength is 3 '},
+						maxLength: {value: 10, message: 'The maxlength is 10 '}
 					})}
 				></input>
 				{ errors?.kbis?.message }
@@ -85,7 +86,7 @@ const Register = () => {
 					type="text" 
 					placeholder="Confirmation URL" 
 					name="confirmationURL" 
-					ref={register({ required: { value: true, message: 'Please fill out this field'}})}
+					ref={register({ required: { value: true, message: 'Please fill out this field '}})}
 				></input>
 				{ errors?.confirmationURL?.message }
 
@@ -95,12 +96,12 @@ const Register = () => {
 					type="text" 
 					placeholder="Redirection URL" 
 					name="redirectionURL" 
-					ref={register({ required: { value: true, message: 'Please fill out this field'}})}
+					ref={register({ required: { value: true, message: 'Please fill out this field '}})}
 				></input>
 				{ errors?.redirectionURL?.message }
 
 				<label htmlFor="currency">Currency: </label>
-				<select id="currency" name="currency" ref={register({ required: {value: true, message: 'Please fill out this field'} })}>
+				<select id="currency" name="currency" ref={register({ required: {value: true, message: 'Please fill out this field '} })}>
 				{
 					currencies.map(currency => (
 						<option value={currency}>{currency}</option>
@@ -108,11 +109,8 @@ const Register = () => {
 				}
 				</select>
 				{ errors?.currency?.message }
-
 				<input type="submit" />
 			</form>
-		)}
-		{!selectors.errors() && <span> REDIRECT </span>}
 		</>
     );
 };

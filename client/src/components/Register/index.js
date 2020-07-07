@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from "../../hooks/useAuth";
 import { Redirect } from 'react-router-dom';
@@ -12,10 +12,16 @@ const Register = () => {
 		await actions.register(data)
 	};
 
+	const formatErrors = errors => (
+		Object.keys(errors).map(key => (
+		<span>{ key }: { errors[key] }</span>
+		))
+	);
+
     return (
 		<>
 			{!selectors.errors() && <Redirect to="/login" />}
-			{(Object.keys(selectors.errors()).length) && <span> SOMETHING WENT WRONG. TRY AGAIN LATER </span>}
+			{ formatErrors(selectors.errors()) }
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<label htmlFor="compagnyName">Compagny Name</label>
 				<input 

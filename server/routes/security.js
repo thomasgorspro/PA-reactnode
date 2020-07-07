@@ -37,8 +37,7 @@ router.post("/login_check", (req, res) => {
       err === "invalid"
         ? res.status(400).json({
           errors: {
-            username: "Invalid or yet to be validated credentials",
-            password: "Invalid or yet to be validated credentials",
+            login: "Invalid or yet to be validated credentials"
           }})
         : console.error(err) || res.sendStatus(500)
     );

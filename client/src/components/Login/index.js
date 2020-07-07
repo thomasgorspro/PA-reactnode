@@ -11,10 +11,16 @@ const Login = () => {
     await actions.login(data);
   }
 
+	const formatErrors = errors => (
+		Object.keys(errors).map(key => (
+		<span>{ key }: { errors[key] }</span>
+		))
+	);
+
   return (
     <>
 		{!selectors.errors() && <Redirect to="/" />}
-    {(Object.keys(selectors.errors()).length) && <span> SOMETHING WENT WRONG. TRY AGAIN LATER </span>}
+    { formatErrors(selectors.errors()) }
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">Email</label>
         <input

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const db = require("../lib/mongodb");
+const db = require('../../lib/mongoose');
 
 const Schema = new mongoose.Schema(
   {
@@ -21,6 +21,5 @@ const Schema = new mongoose.Schema(
     Price: String
   }
 );
-const Transaction = db.model("Transaction", Schema);
 
-module.exports = Transaction;
+module.exports = db.model("Transaction", Schema);

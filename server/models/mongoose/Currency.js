@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const db = require("../lib/mongodb");
+const db = require('../../lib/mongoose');
 
 const Schema = new mongoose.Schema({
   name: String,
@@ -8,6 +8,5 @@ const Schema = new mongoose.Schema({
 });
 
 
-const Currency = db.model('Currency', Schema);
 
-module.exports = Currency;
+module.exports = db.model("Currency", Schema);

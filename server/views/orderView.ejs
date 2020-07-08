@@ -15,8 +15,11 @@
       </p>
       <p><b>Shipping: </b><%= order.Shipping %></p>
 
-      <% order.ShoppingCart.forEach((article, index) => { %>
-
+      <%
+      let fullRefunded = true
+      order.ShoppingCart.forEach((article, index) => {
+        if (article.refunded === 'false') { fullRefunded = false }
+      %>
         <p><b>Article <%= index + 1 %>: </b><br>
           <b class="ml-8">Name: </b><%= article.name %><br>
           <b class="ml-8">Price: </b><%= article.price %><br>
@@ -44,6 +47,12 @@
       <% }); %>
 
       <p><b>Price: </b><%= order.TotalPrice %></p>
+
+      <br><br>
+
+      <button id="fullRefund" class="<% if (fullRefunded) { %> bg-gray-700 <% } else { %> bg-red-500 hover:bg-red-700 <% } %> text-white font-bold py-2 px-4 rounded">
+        Full refund
+      </button>
 
     </div>
   </div>
@@ -78,5 +87,40 @@
     })
   }
 
+  const fullRefundButton = document.getElementById("fullRefund");
+  fullRefundButton.addEventListener('click', (e) => {
+    fetch("/transactions/" + transactionId, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const shoppingCart = data.ShoppingCart;
+        shoppingCart.forEach(article => {
+          article.refunded = "true";
+        })
+        fetch("/transactions/" + transactionId, {
+          method: "PUT",
+          body: JSON.stringify({
+            "ShoppingCart": shoppingCart
+          }),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }).then(() => {
+          for (let i = 0; i < buttons.length; i++) {
+            buttons[i].setAttribute('data-refunded', 'true')
+            buttons[i].classList.remove('bg-red-500', 'hover:bg-red-700')
+            buttons[i].classList.add('bg-gray-700')
+            buttons[i].innerHTML = 'Refunded';
+          }
+          fullRefundButton.classList.remove("bg-red-500", "hover:bg-red-700")
+          fullRefundButton.classList.add("bg-gray-700")
+          fullRefundButton.innerHTML = 'Refunded';
+        })
+    })
+  })
 </script>
 <%- include('templates/footer') %>

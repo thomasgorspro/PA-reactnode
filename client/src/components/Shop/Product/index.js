@@ -13,7 +13,6 @@ const Product = ({ item }) => {
                 width="250"
                 height="250"
             />
-            <button onClick={() => {}}>Add to cart</button>
             <span> =================</span><br />
         </div>
     )

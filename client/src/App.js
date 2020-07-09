@@ -1,6 +1,5 @@
 import React from 'react';
 import {  BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { createBrowserHistory } from 'history';
 import './App.css';
 
 import { RootProvider } from "./context/rootContext";
@@ -21,7 +20,7 @@ const App = () => (
         <Header />
         <Switch>
             <Route path="/shop" component={Shop} />
-            <Route path="/shop/cart" component={Card} />
+            <Route path="/cart" component={Cart} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
         </Switch>

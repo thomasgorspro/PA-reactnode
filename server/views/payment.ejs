@@ -96,16 +96,20 @@
   </body>
   <script type="text/javascript">
     const acceptBtn = document.getElementById("pay");
+    const CLIENTID = localStorage.getItem('client-token');
+    const CLIENTSECRET = localStorage.getItem('client-secret');
     if (acceptBtn) {
       acceptBtn.addEventListener("click", () => {
         const div = document.createElement("div");
         const appendTo = document.getElementById("actions");
         div.classList.add("loader", "ease-linear", "rounded-full", "border-8", "border-t-8", "border-gray-200", "h-12", "w-12");
         appendTo.appendChild(div);
-        fetch("/payment", {
+        const lastPathPart = window.location.pathname.split("/").slice(-1)[0];
+        fetch(`/payment/${lastPathPart}`, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            Authorization: "Basic " + btoa(`${CLIENTID}:${CLIENTSECRET}`),
           },
           body: JSON.stringify({
             bank: {

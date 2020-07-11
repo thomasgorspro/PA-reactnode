@@ -11,7 +11,7 @@ Content-Type: application/json
     "redirectionURL": "test.fr",
     "currency": "€"
 }
-
+###
 POST http://localhost:3000/login_check
 Content-Type: application/json
 
@@ -21,3 +21,9 @@ Content-Type: application/json
 }
 
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InR0dEB0ZXN0LmZyIiwiaWF0IjoxNTkzMjU0NjgzLCJleHAiOjE1OTMyNTgyODN9.w_gaY6Aj2lldQpZ8fIBaicfHUd0q4qkKPzVj2N1jark
+###
+
+GET http://localhost:3000/transactions
+###
+
+DELETE http://localhost:3000/transactions/5f09b87b82a17c0671aa5abc

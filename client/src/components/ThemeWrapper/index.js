@@ -2,21 +2,17 @@ import React from "react";
 
 const ThemeWrapper = ({ children }) => (
   <div
-    style={{
-      width: "100vw",
-      height: "100vh",
-      display: "flex",
-      flexDirection: "column",
-    }}
-    className="App"
+    className="App m-0 h-full w-full" 
   >
+    <div className="hidden sm:block" id="stripes">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <div
-      style={{
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        backgroundColor: "#555555",
-      }}
+      className="container mx-auto"
     >
       {children}
     </div>

@@ -14,8 +14,6 @@ router
       });
     });
   })
-
-  .use(basicAuth)
   
   .post("/:id", (req, res) => {
     Transaction.findById(req.params.id).then(() =>

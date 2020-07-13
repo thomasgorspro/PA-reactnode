@@ -9,8 +9,7 @@ router
   .get("/", (req, res) => {
     Transaction.find(req.query).then((data) => res.json(data));
   })
-
-  .use(basicAuth)
+  
   // POST a transaction
   .post("/", (req, res) => {
     const transaction = new Transaction(req.body);

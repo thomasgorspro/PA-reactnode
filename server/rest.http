@@ -24,6 +24,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InR0dEB0Z
 ###
 
 GET http://localhost:3000/transactions
+Authorization: Basic XNkYXplYXo6cXNkcXNk
 ###
 
 DELETE http://localhost:3000/transactions/5f09b87b82a17c0671aa5abc

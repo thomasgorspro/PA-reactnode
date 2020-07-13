@@ -1,5 +1,6 @@
 const express = require("express");
 const Transaction = require("../models/mongoose/Transaction");
+const basicAuth = require("../middlewares/basicAuth");
 
 const router = express.Router();
 
@@ -8,14 +9,14 @@ router
   .get("/", (req, res) => {
     Transaction.find(req.query).then((data) => res.json(data));
   })
-
+  
   // POST a transaction
   .post("/", (req, res) => {
     const transaction = new Transaction(req.body);
     transaction
       .save()
       .then((data) =>
-        res.status(201).json({ transaction, redirectUrl: "http://localhost:3000/payment" })
+        res.status(201).json({ transaction, redirectUrl: `http://localhost:3000/payment/${data._id}` })
       );
   })
 

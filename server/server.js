@@ -14,7 +14,6 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(express.json());
 
-ShopRouterManager(app);
 RouterManager(app);
 
 app.listen(process.env.SERVER_PORT || 3000, () =>

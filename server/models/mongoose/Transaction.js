@@ -4,21 +4,24 @@ const db = require('../../lib/mongoose');
 const Schema = new mongoose.Schema(
   {
     Customer: {
-      email: String
-    },
-    Billing: {
+      ShippingAdress: {
+        Address: String,
+        City: String,
+        Zipcode: String,
+        Country: String,
+      },
       BillingAddress: {
-        Firstname: String,
-        Lastname: String,
         Address: String,
         City: String,
         Zipcode: String,
         Country: String,
       }
     },
-    Shipping: String,
     ShoppingCart: Array,
-    Price: String
+    Price: String,
+    Currency: String,
+    Amount: Number,
+    
   }
 );
 

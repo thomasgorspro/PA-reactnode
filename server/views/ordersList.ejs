@@ -13,21 +13,22 @@
           </tr>
         </thead>
         <tbody>
-          <% orders.forEach((order, index) => { %>
+          <% if (orders) { %>
+            <% orders.forEach((order, index) => { %>
 
-          <tr>
-            <td><%= index %></td>
-            <td><%= order.Customer.email %></td>
-            <td><%= order.Price %></td>
-            <td>
-              <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                Refund
-              </button>
-            </td>
-          </tr>
-
-          <% }); %>
-
+            <tr>
+              <td><%= index %></td>
+              <td><%= order.Customer.email %></td>
+              <td><%= order.Price %></td>
+              <td>
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                  Refund
+                </button>
+              </td>
+            </tr>
+            
+            <% }); %>
+          <% } %> 
         </tbody>
 
       </table>

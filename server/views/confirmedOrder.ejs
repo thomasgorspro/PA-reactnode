@@ -1,6 +1,17 @@
-<%- include('templates/header') %> 
-<section>
-  <p>Hey, insert name here</p>
-  <h3>Your order is confirmed!</h3>
+<%- include('templates/header') %>
+<section class="w-full flex items-center justify-center">
+  <div class="bg-white sm:shadow-md rounded sm:px-8 px-4 pt-6 pb-8 mb-4">
+    <p class="mb-1 text-xl">Hey,</p>
+    <h3 class="mb-6 text-green-500 text-lg">Your order has been confirmed!</h3>
+    <ul class="">
+      <li>Earphone</li>
+      <li>Tesla Model 3</li>
+      <li>Bic 4 colour pen</li>
+    </ul>
+
+    <a href="/shop/orders" class="w-full">
+      <div class="mt-6 bg-gray-400 w-full text-center hover:bg-gray-500 text-black py-2 px-4 rounded transition duration-300">View all your orders</div>
+    </a>
+  </div>
 </section>
-<%- include('templates/footer') %> 
+<%- include('templates/footer') %>

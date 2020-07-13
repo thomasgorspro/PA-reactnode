@@ -11,6 +11,10 @@ router
     res.render("confirmedOrder");
   })
 
+  .get("/reject", (req, res) => {
+    res.render("rejectedOrder");
+  })
+
   // CGET all transactions
   .get("/orders", (req, res) => {
     Transaction.find(req.query).then((data) => {

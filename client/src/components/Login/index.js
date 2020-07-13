@@ -23,7 +23,7 @@ const Login = () => {
       { selectors.errors() && formatErrors(selectors.errors()) }
       <div className="w-full flex items-center justify-center">
         <form onSubmit={handleSubmit(onSubmit)} className="bg-white sm:shadow-md rounded sm:px-8 px-4 pt-6 pb-8 mb-4">
-          <h1 class="text-2xl mb-6 text-center w-full font-bold text-purple-600">Sign In</h1>
+          <h1 class="text-xl mb-6 text-center w-full font-bold text-purple-600">Sign In</h1>
           <div className="mb-6">
             <label htmlFor="login" className="block text-gray-700 text-sm font-bold mb-2">Username or Compagny Email</label>
             <input

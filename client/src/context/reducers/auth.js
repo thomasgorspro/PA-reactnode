@@ -2,7 +2,7 @@ import jwt_decode from "jwt-decode";
 
 export const initialState = {
   user: localStorage.getItem("token")
-    ? jwt_decode(localStorage.getItem("token"))
+    ? (jwt_decode(localStorage.getItem("token")).login)
     : null,
   token: localStorage.getItem("token"),
   errors: {} 

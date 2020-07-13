@@ -26,7 +26,7 @@ Merchant.init(
         unique: true,
         validate: {
             isEmail: {
-                msg: "Email non valide"
+                msg: "Invalid Email"
             }
         }
     },

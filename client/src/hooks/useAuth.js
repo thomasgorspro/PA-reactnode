@@ -15,12 +15,9 @@ const useAuth = () => {
       let payload = { errors, isMerchant, token, user: null }; 
       if(token) {
         localStorage.setItem("token", token);
-        const l = jwtDecode(token);
-        const { login } = l;
-        console.log(l,login, 'l');
+        const { login } = jwtDecode(token);
         payload.user = login;
         payload.token = token;
-        console.log(payload, 'payload');
       }
       dispatch({
         type: "LOGIN",
@@ -34,7 +31,6 @@ const useAuth = () => {
     },
     register: async (data, entity) =>  {
       const res = await register(data, entity);
-      console.log(res);
       dispatch({
         type: "REGISTER",
         payload: {
@@ -48,10 +44,7 @@ const useAuth = () => {
     isConnected: () => {
       return Boolean(authState.token);
     },
-    user: () => {
-      console.log(authState, authState?.user, 'sele');
-      return authState?.user;
-    },
+    user: () => authState?.user,
     isMerchant: () => authState?.isMerchant,
     errors: () => authState?.errors
   };

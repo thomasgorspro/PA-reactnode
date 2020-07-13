@@ -8,7 +8,6 @@ const Login = () => {
   const { handleSubmit, errors, register } = useForm();
 
   const onSubmit = async (data) => {
-    console.log('called idk when');
     await actions.login(data);
   }
 

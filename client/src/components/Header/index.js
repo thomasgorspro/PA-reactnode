@@ -8,8 +8,7 @@ const Header = () => {
  
     const logout = () => {
         actions.logout();
-        console.log('redirect');
-        return <Redirect to="/" />
+        return <Redirect to="/"/>
     };
     return (
         <>

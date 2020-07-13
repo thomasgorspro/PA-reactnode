@@ -30,8 +30,8 @@ const useAuth = () => {
       localStorage.removeItem("user");
       dispatch({ type: "LOGOUT" });
     },
-    register: async (data) =>  {
-      const res = await register(data);
+    register: async (data, entity) =>  {
+      const res = await register(data, entity);
       console.log(res);
       dispatch({
         type: "REGISTER",

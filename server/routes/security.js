@@ -1,40 +1,44 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const { ValidationError } = require("sequelize");
-
 const { createToken } = require("../lib/auth");
-const { Merchant } = require("../models/sequelize");
+
+const { Merchant, User } = require("../models/sequelize");
 
 const router = express.Router();
 
 // POST
-router.post("/login_check", (req, res) => {
-  const { email, password } = req.body;
-
-  Merchant.findOne({
-    where: { email, confirmed: true },
-  })
-    .then((data) => {
-      if (!data) {
+router.post("/login_check", async (req, res) => {
+  const { login, password } = req.body;
+  Promise.all([
+    User.findOne({ where: { username: login } }),
+    Merchant.findOne({ where: { email: login, confirmed: true } })
+  ])
+  .then((entities) => {
+    const entity = entities[0] || entities[1];
+      if (!entity) {
         return Promise.reject("invalid");
       } else {
-        return bcrypt.compare(password, data.password).then((valid) => {
+        return bcrypt.compare(password, entity.password).then((valid) => {
           if (!valid) {
             return Promise.reject("invalid");
           } else {
-            return Promise.resolve(data);
+            return Promise.resolve(entity);
           }
         });
       }
     })
-    .then((merchant) =>
-      createToken({ email: merchant.email}).then((token) => {
+    .then((entity) => {
+      const login = entity.email || entity.username; 
+      return createToken({ 
+        login
+        }).then((token) => {
           console.log({ token });
-          return res.json({ token })
+          return res.json({ token, isMerchant: !!entity.KBIS });
       })
-    )
+    })
     .catch((err) =>
-      err === "invalid"
+    err === "invalid"
         ? res.status(400).json({
           errors: {
             login: "Invalid or yet to be validated credentials"
@@ -45,7 +49,8 @@ router.post("/login_check", (req, res) => {
 
 // POST
 router.post("/register", (req, res) => {
-  Merchant.create(req.body)
+  const Entity = req.headers.entity === 'merchant' ? Merchant : User;
+  Entity.create(req.body)
     .then((data) => res.status(201).json({ data }))
     .catch((error) => {
       if (error instanceof ValidationError) {

@@ -19,29 +19,30 @@ const Login = () => {
 
   return (
     <>
-		{!selectors.errors() && <Redirect to="/" />}
-    { formatErrors(selectors.errors()) }
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          placeholder="email"
-          name="email"
-          ref={register({required: {value: true, message: ' Please fill out this field '}})}
-        ></input>
-        { errors?.email?.message }
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          placeholder="password"
-          name="password"
-          ref={register({required: {value: true, message: ' Please fill out this field '}})}
-        ></input>
-        { errors?.password?.message }
-        <button type="submit">Connexion</button>
-      </form>
+        {!selectors.errors() && <Redirect to="/" />}
+        { selectors.errors() && formatErrors(selectors.errors()) }
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <label htmlFor="login">Username or Compagny Email</label>
+            <input
+                id="login"
+                type="text"
+                placeholder="Username or compagny Email"
+                name="login"
+                ref={register({required: {value: true, message: ' Please fill out this field '}})}
+            ></input>
+            { errors?.login?.message }
+            
+            <label htmlFor="password">Password</label>
+                <input
+                id="password"
+                type="password"
+                placeholder="password"
+                name="password"
+                ref={register({required: {value: true, message: ' Please fill out this field '}})}
+            ></input>
+            { errors?.password?.message }
+            <button type="submit">Connexion</button>
+        </form>
     </>
   );
 }

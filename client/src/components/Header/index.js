@@ -15,7 +15,8 @@ const Header = () => {
                 : 
                     (<>
                         <a href="/login"> Login </a>
-                        <a href="/register"> Register </a>
+                        <a href="/user/register"> Register as User</a>
+                        <a href="/merchant/register"> Register as Merchant</a>
                     </>)
             }
         </>

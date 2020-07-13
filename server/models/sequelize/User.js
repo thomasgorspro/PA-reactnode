@@ -11,7 +11,7 @@ User.init(
       unique: true,
       validate: {
         isEmail: {
-          msg: "Email non valide"
+          msg: "Invalid Email"
         }
       }
     },
@@ -26,6 +26,11 @@ User.init(
       allowNull: false,
       defaultValue: true,
     },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'USER'
+    }
   },
   {
     sequelize,

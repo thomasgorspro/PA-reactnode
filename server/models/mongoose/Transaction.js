@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import db from "../lib/db";
+const mongoose = require("mongoose");
+const db = require('../../lib/mongoose');
 
 const Schema = new mongoose.Schema(
   {
@@ -22,4 +22,4 @@ const Schema = new mongoose.Schema(
   }
 );
 
-export const Transaction = db.model("Transaction", Schema);
+module.exports = db.model("Transaction", Schema);

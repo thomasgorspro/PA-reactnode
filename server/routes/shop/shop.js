@@ -1,6 +1,5 @@
-import express from "express";
-import { Transaction } from "../models/Transaction";
-
+const express = require("express");
+const Transaction = require("../../models/mongoose/Transaction");
 const router = express.Router();
 
 router
@@ -29,4 +28,4 @@ router
     res.render("login");
   });
 
-export default router;
+module.exports = router;

@@ -1,0 +1,30 @@
+POST http://localhost:3000/merchant
+Content-Type: application/json
+
+{
+    "compagnyName": "LLL",
+    "password": "test",
+    "KBIS": "111",
+    "email": "lll@test.fr",
+    "phone": "0123456789",
+    "confirmationURL": "test.fr",
+    "redirectionURL": "test.fr",
+    "currency": "€"
+}
+###
+POST http://localhost:3000/login_check
+Content-Type: application/json
+
+{
+    "email": "ttt@test.fr",
+    "password": "test"
+}
+
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InR0dEB0ZXN0LmZyIiwiaWF0IjoxNTkzMjU0NjgzLCJleHAiOjE1OTMyNTgyODN9.w_gaY6Aj2lldQpZ8fIBaicfHUd0q4qkKPzVj2N1jark
+###
+
+GET http://localhost:3000/transactions
+Authorization: Basic XNkYXplYXo6cXNkcXNk
+###
+
+DELETE http://localhost:3000/transactions/5f09b87b82a17c0671aa5abc

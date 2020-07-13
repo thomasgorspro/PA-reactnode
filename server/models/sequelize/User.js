@@ -1,6 +1,7 @@
-import sequelize from "../../lib/sequelize";
-import { DataTypes, Model } from "sequelize";
-import bcrypt from "bcryptjs";
+const sequelize = require("../../lib/sequelize");
+const { DataTypes, Model } = require("sequelize");
+const bcrypt = require ("bcryptjs");
+
 class User extends Model {}
 User.init(
   {
@@ -39,9 +40,4 @@ User.addHook('beforeCreate', async (user, options) => {
   user.password = await bcrypt.hash(user.password, salt);
 });
 
-// Schema update
-User.sync({
-  force: true,
-});
-
-export default User;
+module.exports = User;

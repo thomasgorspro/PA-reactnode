@@ -32,6 +32,12 @@ router
     );
   })
 
+  .put("/:id", (req, res) => {
+    Transaction.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    }).then((data) => res.json(data))
+  })
+
   // GET all operations of a transaction
   .get("/:id/operations", (req, res) => {})
 

@@ -18,7 +18,7 @@ const Schema = new mongoose.Schema(
     },
     Shipping: String,
     ShoppingCart: Array,
-    Price: String
+    TotalPrice: String,
   }
 );
 

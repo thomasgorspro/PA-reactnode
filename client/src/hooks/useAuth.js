@@ -11,15 +11,17 @@ const useAuth = () => {
 
   const actions = {
     login: async (data) => {
-      const { token, errors } = await login(data);
-      let payload = { errors, token, user: null }; 
+      const { token, isMerchant, errors } = await login(data);
+      let payload = { errors, isMerchant, token, user: null }; 
       if(token) {
         localStorage.setItem("token", token);
-        const { email: user } = jwtDecode(token);
-        payload.user = user; 
+        const l = jwtDecode(token);
+        const { login } = l;
+        console.log(l,login, 'l');
+        payload.user = login;
         payload.token = token;
+        console.log(payload, 'payload');
       }
-      console.log(payload);
       dispatch({
         type: "LOGIN",
         payload
@@ -46,7 +48,11 @@ const useAuth = () => {
     isConnected: () => {
       return Boolean(authState.token);
     },
-    user: () => authState?.user,
+    user: () => {
+      console.log(authState, authState?.user, 'sele');
+      return authState?.user;
+    },
+    isMerchant: () => authState?.isMerchant,
     errors: () => authState?.errors
   };
 

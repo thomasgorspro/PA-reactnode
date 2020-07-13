@@ -1,16 +1,23 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const Header = () => {
     const { selectors, actions } = useAuth();
     const user = selectors.user();
+ 
+    const logout = () => {
+        actions.logout();
+        console.log('redirect');
+        return <Redirect to="/" />
+    };
     return (
         <>
             {
                 selectors.isConnected() ?  
                     (<>
-                        <span> Hello { user.email } </span>
-                        <button onClick={actions.logout}>Logout</button>
+                        <span> Hello { user } </span>
+                        <button onClick={logout}> Logout </button>
                     </>)
                 : 
                     (<>

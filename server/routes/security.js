@@ -29,7 +29,8 @@ router.post("/login_check", async (req, res) => {
       }
     })
     .then((entity) => {
-      const login = entity.email || entity.username; 
+      const login = entity.compagnyName || entity.username; 
+      console.log(login, 'server');
       return createToken({ 
         login
         }).then((token) => {

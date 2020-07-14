@@ -14,7 +14,7 @@ const RouterManager = (app) => {
     .use('/payment', PaymentRouter)
     .use("/psp", PspRouter)
     .use("/", SecurityRouter)
-    // .use(verifyToken)
+    .use(verifyToken)
     .use('/transactions', TransactionRouter)
     .use("/admin", AdminRouter)
     .use('/merchant', MerchantRouter)

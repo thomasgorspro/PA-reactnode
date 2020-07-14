@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const { ValidationError } = require("sequelize");
 const { createToken } = require("../lib/auth");
+import { generateRandomToken } from "../lib/apiAuth";
 
 const { Merchant, User } = require("../models/sequelize");
 
@@ -54,8 +55,9 @@ router.post("/login_check", async (req, res) => {
 
 // POST
 router.post("/register", (req, res) => {
+  const [clientToken, clientSecret] = new Array(generateRandomToken(), generateRandomToken());
   const Entity = req.headers.entity === 'merchant' ? Merchant : User;
-  Entity.create(req.body)
+  Entity.create({...req.body, clientToken, clientSecret})
     .then((data) => res.status(201).json({ data }))
     .catch((error) => {
       if (error instanceof ValidationError) {

@@ -56,7 +56,7 @@ Merchant.init(
     confirmed: {
       type: BOOLEAN,
       allowNull: false,
-      defaultValue: true,
+      defaultValue: false,
     },
   },
   {

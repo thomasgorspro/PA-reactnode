@@ -11,8 +11,14 @@ const router = express.Router();
 router.post("/login_check", async (req, res) => {
   const { login, password } = req.body;
   Promise.all([
-    User.findOne({ where: { username: login } }),
-    Merchant.findOne({ where: { email: login, confirmed: true } })
+    User.findOne({ where: { username: login }, 
+      attributes: ["username", "firstname", "password", "lastname", "createdAt", "role" ] 
+    }),
+    Merchant.findOne({ where: { email: login, confirmed: true }, attributes: [
+        "compagnyName", "KBIS", "currency", "email","password", "createdAt", 
+        "phone", "confirmationURL", "redirectionURL",
+        'clientToken', 'clientSecret'
+    ]})
   ])
   .then((entities) => {
     const entity = entities[0] || entities[1];
@@ -28,14 +34,12 @@ router.post("/login_check", async (req, res) => {
         });
       }
     })
-    .then((entity) => {
-      const login = entity.compagnyName || entity.username; 
-      console.log(login, 'server');
-      return createToken({ 
-        login
+    .then((user) => {
+      return createToken({
+        user
         }).then((token) => {
           console.log({ token });
-          return res.json({ token, isMerchant: !!entity.KBIS });
+          return res.json({ token });
       })
     })
     .catch((err) =>

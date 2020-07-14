@@ -16,6 +16,7 @@ const Schema = new mongoose.Schema(
         Country: String,
       }
     },
+    CompagnyName: String,
     Shipping: String,
     ShoppingCart: Array,
     TotalPrice: String,

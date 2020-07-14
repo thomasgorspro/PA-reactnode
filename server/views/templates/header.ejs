@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Site d'un marchand très connu">
+  <link href="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.css" rel="stylesheet"
+    type="text/css">
+  <link rel="stylesheet" href="/stylesheets/tailwind.min.css" type="text/css">
+  <script src="https://unpkg.com/vanilla-datatables@latest/dist/vanilla-dataTables.min.js" type="text/javascript">
+  </script>
+  <link rel="icon" href="/images/amazon-icon.svg" />
+  <title>Amazonax</title>
+</head>
+
+<body class="bg-gray-100">
+  <div className="hidden sm:block" id="stripes">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <header>
+    <nav class="flex items-center justify-between flex-wrap p-6 mb-8">
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <img src="/images/amazon-icon.svg" width="30" class="mr-3">
+        <a href="/shop">
+          <span class="font-semibold text-2xl tracking-tight">Amazonax</span>
+        </a>
+      </div>
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto ml-10">
+        <div class="text lg:flex-grow">
+          <a href="/shop/orders" class="hover:text-gray-400 block mt-4 lg:inline-block lg:mt-0 text-white mr-4 transition duration-300">
+            Orders
+          </a>
+        </div>
+        <div>
+          <a href="/shop/login" class="shadow border-none bg-indigo-700 hover:bg-gray-100 hover:text-indigo-700 inline-block text-sm px-4 py-2 leading-none border rounded text-white mt-4 lg:mt-0 transition duration-300">Login to API</a>
+        </div>
+      </div>
+    </nav>
+  </header>

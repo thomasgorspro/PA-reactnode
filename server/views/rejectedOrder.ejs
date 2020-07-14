@@ -1,0 +1,13 @@
+<%- include('templates/header') %>
+<section class="w-full flex items-center justify-center">
+  <div class="bg-white sm:shadow-md rounded sm:px-8 px-4 pt-6 pb-8 mb-4">
+    <p class="mb-1 text-xl"> Oops,</p>
+    <h3 class="mb-6 text-red-500 text-lg">There was a problem with your order.</h3>
+    <p>We could not the an authorization from your bank to proceed the payment.</p>
+  
+    <a href="/shop/orders" class="w-full">
+      <div class="mt-6 bg-gray-400 w-full text-center hover:bg-gray-500 text-black py-2 px-4 rounded transition duration-300">View all your orders</div>
+    </a>
+  </div>
+</section>
+<%- include('templates/footer') %>

@@ -1,0 +1,71 @@
+POST http://localhost:3000/merchant
+Content-Type: application/json
+
+{
+    "compagnyName": "LLL",
+    "password": "test",
+    "KBIS": "111",
+    "email": "lll@test.fr",
+    "phone": "0123456789",
+    "confirmationURL": "test.fr",
+    "redirectionURL": "test.fr",
+    "currency": "€"
+}
+###
+POST http://localhost:3000/login_check
+Content-Type: application/json
+
+{
+    "email": "ttt@test.fr",
+    "password": "test"
+}
+
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InR0dEB0ZXN0LmZyIiwiaWF0IjoxNTkzMjU0NjgzLCJleHAiOjE1OTMyNTgyODN9.w_gaY6Aj2lldQpZ8fIBaicfHUd0q4qkKPzVj2N1jark
+###
+
+PUT http://localhost:3000/admin/validate_merchant/4
+
+GET http://localhost:3000/transactions
+###
+
+GET http://localhost:3000/merchant
+
+DELETE http://localhost:3000/transactions/5f0cab189b90e70588f2c3d7
+###
+
+POST http://localhost:3000/transactions
+Content-Type: application/json
+Accept: application/json
+
+{
+    "customer": {
+        "shippingAddress": {
+          "address": "68 Place Charles de Gaulle",
+          "city": "VILLENEUVE-D",
+          "zipcode": "59791",
+          "country": "France"
+        },
+        "billingAddress": {
+            "address": "68 Place Charles de Gaulle",
+            "city": "VILLENEUVE-D",
+            "zipcode": "59791",
+            "country": "France"
+        }
+    },
+    "cart": [
+        { "item": "item1", "unitPrice": 1000, "quantity": 5 },
+        { "item": "item1", "unitPrice": 1000, "quantity": 5 },
+        { "item": "item1", "unitPrice": 1000, "quantity": 5 }
+    ],
+    "totalPrice": 14000,
+    "currency": "euro",
+    "metadata": {
+      "customerId": 1,
+      "orderId": 15146
+    }
+}
+
+###
+GET http://localhost:3000/merchant
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImNvbXBhZ255TmFtZSI6IkFtYXpvbmF4IiwiS0JJUyI6IjU0NTYiLCJjdXJyZW5jeSI6ImV1cm8iLCJlbWFpbCI6ImFtYXpvbkBlbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRTTzBSN3VRYlBIWXFURDd0Y1JHNTllUzhVcExnaElVNFVQYy5TTTQ3ck0vVXE3cGtWcXlSdSIsImNyZWF0ZWRBdCI6IjIwMjAtMDctMTRUMTU6MTI6MzEuMDM4WiIsInBob25lIjoiMDE1NDg0NzU2OCIsImNvbmZpcm1hdGlvblVSTCI6ImNvbmZpcm0uaHRtbCIsInJlZGlyZWN0aW9uVVJMIjoicmVqZWN0Lmh0bWwiLCJjbGllbnRUb2tlbiI6ImM2YmMzZmFhM2U3NDUiLCJjbGllbnRTZWNyZXQiOiJjYTRmYzU2MTIyOTI2In0sImlhdCI6MTU5NDc0MDM1NiwiZXhwIjoxNTk0NzQzOTU2fQ.-mw2SSWF3xIbxfeps_D4jywKnntvb6bFhpTwv-s90aY
+

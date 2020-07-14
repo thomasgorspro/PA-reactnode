@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 mongoose
   .connect(
-    `mongodb://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@mongo`,
+    `mongodb://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@mongo:27017`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -11,5 +11,4 @@ mongoose
   )
   .then(() => console.log("connected to mongoDB"))
   .catch((e) => console.log(e));
-
-export default mongoose.connection;
+module.exports = mongoose.connection;

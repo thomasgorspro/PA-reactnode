@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useAuth from "../../../hooks/useAuth";
 
 export const Merchant = () => {
-    const [transactions, setTransactions] = useState({});
+    const [transactions, setTransactions] = useState([]);
     const { actions, selectors } = useAuth();
 
     useEffect(() => {

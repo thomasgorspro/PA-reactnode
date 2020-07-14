@@ -19,11 +19,11 @@ export const reducer = (state, action) => {
       return {
         ...state,
         ...action.payload
-      } 
+      };
     case "LOGOUT": 
       return {
         ...initialState
-      }
+      };
     default:
       return state;
   }

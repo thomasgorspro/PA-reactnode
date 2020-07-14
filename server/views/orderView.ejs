@@ -1,0 +1,123 @@
+<%- include('templates/header') %>
+<section class="flex justify-center">
+
+  <div class="container w-full md:w-4/5 xl:w-3/5  mx-auto px-2">
+    <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+      <p id="transactionId" data-id="<%= order.id %>"><b>Transaction id: </b><%= order.id %></p>
+      <p><b>Customer adress: </b><%= order.Customer.email %></p>
+      <p><b>Billing Adress: </b><br>
+          <b class="ml-8">First Name: </b><%= order.Billing.BillingAddress.Firstname %><br>
+          <b class="ml-8">Last Name: </b><%= order.Billing.BillingAddress.Lastname %><br>
+          <b class="ml-8">Address: </b><%= order.Billing.BillingAddress.Address %><br>
+          <b class="ml-8">City: </b><%= order.Billing.BillingAddress.City %><br>
+          <b class="ml-8">Zipcode: </b><%= order.Billing.BillingAddress.Zipcode %><br>
+          <b class="ml-8">Country: </b><%= order.Billing.BillingAddress.Country %>
+      </p>
+      <p><b>Shipping: </b><%= order.Shipping %></p>
+
+      <%
+      let fullRefunded = true
+      order.ShoppingCart.forEach((article, index) => {
+        if (article.refunded === 'false') { fullRefunded = false }
+      %>
+        <p><b>Article <%= index + 1 %>: </b><br>
+          <b class="ml-8">Name: </b><%= article.name %><br>
+          <b class="ml-8">Price: </b><%= article.price %><br>
+          <b class="ml-8"></b>
+          <% const refunded = (article.refunded === 'true'); if (!refunded) { %>
+            <button class="buttonRefund bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    data-id="<%= article.index %>"
+                    data-name="<%= article.name %>"
+                    data-price="<%= article.price %>"
+                    data-refunded="<%= article.refunded %>">
+              Refund
+            </button>
+          <% } else { %>
+            <button class="buttonRefund bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                    data-id="<%= article.index %>"
+                    data-name="<%= article.name %>"
+                    data-price="<%= article.price %>"
+                    data-refunded="<%= article.refunded %>">
+              Refunded
+            </button>
+          <% } %>
+        </p>
+      <% }); %>
+
+      <p><b>Price: </b><%= order.TotalPrice %></p>
+
+      <br><br>
+
+      <button id="fullRefund" class="<% if (fullRefunded) { %> bg-gray-700 <% } else { %> bg-red-500 hover:bg-red-700 <% } %> text-white font-bold py-2 px-4 rounded">
+        Full refund
+      </button>
+
+    </div>
+  </div>
+
+</section>
+
+<script type="application/javascript">
+  let transactionId = document.getElementById("transactionId").dataset.id
+  let buttons = document.getElementsByClassName("buttonRefund")
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', async (e) => {
+      const refunded = buttons[i].dataset.refunded;
+      if (refunded === 'false') {
+        buttons[i].setAttribute('data-refunded', 'true')
+        buttons[i].classList.remove('bg-red-500', 'hover:bg-red-700')
+        buttons[i].classList.add('bg-gray-700')
+        buttons[i].innerHTML = 'Refunded';
+        const data = [];
+        for (let i = 0; i < buttons.length; i++) {
+          data.push({"name": buttons[i].dataset.name, "price": buttons[i].dataset.price, "refunded": buttons[i].dataset.refunded})
+        }
+        return await fetch("/transactions/" + transactionId, {
+          method: "PUT",
+          body: JSON.stringify({
+            "ShoppingCart": data
+          }),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }).catch((err) => console.log(err))
+      }
+    })
+  }
+  const fullRefundButton = document.getElementById("fullRefund");
+  fullRefundButton.addEventListener('click', (e) => {
+    fetch("/transactions/" + transactionId, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const shoppingCart = data.ShoppingCart;
+        shoppingCart.forEach(article => {
+          article.refunded = "true";
+        })
+        fetch("/transactions/" + transactionId, {
+          method: "PUT",
+          body: JSON.stringify({
+            "ShoppingCart": shoppingCart
+          }),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }).then(() => {
+          for (let i = 0; i < buttons.length; i++) {
+            buttons[i].setAttribute('data-refunded', 'true')
+            buttons[i].classList.remove('bg-red-500', 'hover:bg-red-700')
+            buttons[i].classList.add('bg-gray-700')
+            buttons[i].innerHTML = 'Refunded';
+          }
+          fullRefundButton.classList.remove("bg-red-500", "hover:bg-red-700")
+          fullRefundButton.classList.add("bg-gray-700")
+          fullRefundButton.innerHTML = 'Refunded';
+        })
+    })
+  })
+</script>
+<%- include('templates/footer') %>

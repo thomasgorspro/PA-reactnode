@@ -34,10 +34,12 @@ export const Merchant = () => {
             <span> You need to be a connected authorize merchant</span> 
         :
             <>
-                <div>
-                    <h1>Transactions</h1>
-                    {formatData(transactions)}
-                </div>
+                <section className="flex justify-center">
+                    <div className="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+                        <h1>Transactions</h1>
+                        {formatData(transactions)}
+                    </div>
+                </section>
             </>
         }
         </>

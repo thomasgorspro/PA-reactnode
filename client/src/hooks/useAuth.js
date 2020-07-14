@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import jwtDecode from "jwt-decode";
 import RootContext from "../context/rootContext";
-import { login, register } from "../context/actions/auth";
+import { login, register, generateCredentials } from "../context/actions/auth";
 
 const useAuth = () => {
   const {
@@ -37,6 +37,19 @@ const useAuth = () => {
         }
       });
     },
+    generateCredentials: async (id, token) => {
+      const { token: newToken } = await generateCredentials(id, token);
+      let payload = { token: newToken, user: selectors.user() }; 
+      if (newToken) {
+        localStorage.setItem("token", newToken);
+        const decodedPayload = jwtDecode(newToken);
+        payload.user = decodedPayload.user;
+      }
+      dispatch({
+        type: "GENCRED",
+        payload
+      });
+    }
   };
 
   const selectors = {

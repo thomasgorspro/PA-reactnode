@@ -37,8 +37,8 @@ const MerchantListing = () => {
 
   return (
     <section className="flex justify-center">
-      <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-        <h1 class="text-center w-full mb-6 font-bold text-xl text-purple-600">Merchants List</h1>
+      <div className="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+        <h1 className="text-center w-full mb-6 font-bold text-xl text-purple-600">Merchants List</h1>
         <table className="table-auto">
           <thead>
             <tr>

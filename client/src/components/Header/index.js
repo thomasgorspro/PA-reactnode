@@ -12,10 +12,10 @@ const Header = () => {
     };
     return (
         <>
-            <header class="bg-gradient">
-                <nav class="flex flex-col lg:flex-row items-center justify-between flex-wrap p-6 mb-8">
-                    <div class="flex items-center flex-shrink-0 text-white mr-6">
-                        <img src="/images/amazon-icon.svg" width="30" class="mr-3" />
+            <header className="bg-gradient">
+                <nav className="flex flex-col lg:flex-row items-center justify-between flex-wrap p-6 mb-8">
+                    <div className="flex items-center flex-shrink-0 text-white mr-6">
+                        <img src="/images/amazon-icon.svg" width="30" className="mr-3" />
                         <a href="/" className="">
                             <div className="flex flex-col">
                                 <span className="font-semibold text-2xl leading-none">Amazonax</span>
@@ -25,7 +25,7 @@ const Header = () => {
                         </a>
                     </div>
 
-                    <div class="flex">
+                    <div className="flex">
                         {
                             selectors.isConnected() ?
                                 (<>

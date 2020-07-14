@@ -18,3 +18,13 @@ export const register = (data, entity) => {
     }
   }).then((res) => res.json());
 }
+
+export const generateCredentials = async (id, token) => {
+  let response = await fetch(`http://localhost:3000/merchant/${id}/credentials`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+  return response.json();
+};

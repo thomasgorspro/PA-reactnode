@@ -25,7 +25,7 @@ const Login = () => {
           <h1 className="text-xl mb-6 text-center w-full font-bold text-purple-600">Sign In</h1>
           { selectors.errors() && formatErrors(selectors.errors()) }
           <div className="mb-6">
-            <label htmlFor="login" className="block text-gray-700 text-sm font-bold mb-2">Username or Compagny Email</label>
+            <label htmlFor="login" className="block text-gray-700 text-sm font-bold mb-2">Username or Company Email</label>
             <input
                 id="login"
                 type="text"

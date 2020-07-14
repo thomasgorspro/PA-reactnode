@@ -24,6 +24,11 @@ export const reducer = (state, action) => {
       return {
         ...initialState
       }
+    case "GENCRED":
+      return {
+        ...state,
+        ...action.payload,
+      }
     default:
       return state;
   }

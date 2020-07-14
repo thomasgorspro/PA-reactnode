@@ -16,7 +16,7 @@ router.post("/login_check", async (req, res) => {
     Merchant.findOne({ where: { email: login, confirmed: true }, attributes: [
         "compagnyName", "KBIS", "currency", "email","password", "createdAt", 
         "phone", "confirmationURL", "redirectionURL",
-        'clientToken', 'clientSecret'
+        'clientToken', 'clientSecret', 'id'
     ]})
   ])
   .then((entities) => {

@@ -1,12 +1,13 @@
 const express = require('express');
 const { Merchant } = require('../models/sequelize');
 const { ValidationError } = require("sequelize");
+const { generateRandomToken } = require("../lib/apiAuth");
+
 
 const router = express.Router();
 // PUT
 router.put("/validate_merchant/:id", (req, res) => {
-    const clientToken = "clientToken";
-    const clientSecret = "clientSecret";
+    const [clientToken, clientSecret] = new Array(generateRandomToken(), generateRandomToken());
     Merchant.update({ confirmed: true, clientToken, clientSecret },
         { where: { id: req.params.id }
     })

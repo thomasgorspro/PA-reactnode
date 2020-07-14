@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from "../../../hooks/useAuth";
 import { Redirect } from 'react-router-dom';
-const currencies = ['euro', 'livre', 'yen', 'wan', 'dollar']
+const currencies = ['Euro (€)', 'Pound (£)', 'Yen (¥)', 'Won (₩)', 'Dollar ($)']
 
 export const Register = () => {
 	const { actions, selectors } = useAuth();
@@ -14,109 +14,146 @@ export const Register = () => {
 
 	const formatErrors = errors => (
 		Object.keys(errors).map(key => (
-		<span>{ key }: { errors[key] }</span>
+			<span>{key}: { errors[key]}</span>
 		))
 	);
 
-    return (
+	return (
 		<>
 			{!selectors.errors() && <Redirect to="/login" />}
-			{ selectors.errors() && formatErrors(selectors.errors()) }
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<label htmlFor="compagnyName">Compagny Name</label>
-				<input 
-					id="compagnyName" 
-					type="text" 
-					placeholder="Compagny Name" 
-					name="compagnyName"
-					ref={register({ required: { value: true, message: 'Please fill out this field '}})}
-				></input>
-				{ errors?.compagnyName?.message }
-				<label htmlFor="email">Email</label>
-				<input 
-					id="email" 
-					type="email" 
-					placeholder="email" 
-					name="email"
-					ref={register({ required: { value: true, message: 'Please fill out this field '}})}
-				></input>
-				{ errors?.email?.message }
+			<div className="w-full flex items-center justify-center">
+				<form onSubmit={handleSubmit(onSubmit)} className="sm:w-auto w-full sm:bg-white sm:shadow-md rounded sm:px-8 px-4 pt-6 pb-8 mb-4">
+					<h1 className="text-2xl mb-6 text-center w-full font-bold text-purple-600">Register as Merchant</h1>
+					{ selectors.errors() && formatErrors(selectors.errors()) }
+					<div className="sm:flex items-center justify-between">
+						<div>
+							<div className="mb-6">
+								<label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">Email</label>
+								<input
+									id="email"
+									type="email"
+									placeholder=""
+									name="email"
+									className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition duration-300"
+									ref={register({ required: { value: true, message: 'Please fill out this field ' } })}
+								></input>
+								{errors?.email?.message}
+							</div>
 
-				<label htmlFor="password">Password</label>
-				<input 
-					id="password"
-					type="password" 
-					placeholder="password" 
-					name="password"
-					ref={register({ 
-						required: { value: true, message: 'Please fill out this field '},
-						minLength: {value: 3, message: 'The minlength is 3 '}
-					})}
-				></input>
-				{ errors?.password?.message }
+							<div className="mb-6">
+								<label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">Password</label>
+								<input
+									id="password"
+									type="password"
+									placeholder=""
+									name="password"
+									className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition duration-300"
+									ref={register({
+										required: { value: true, message: 'Please fill out this field ' },
+										minLength: { value: 3, message: 'The minlength is 3 ' }
+									})}
+								></input>
+								{errors?.password?.message}
+							</div>
+							<div className="mb-6">
+								<label htmlFor="currency" className="block text-gray-700 text-sm font-bold mb-2">Currency</label>
+								<select
+									id="currency"
+									name="currency"
+									ref={register({ required: { value: true, message: 'Please fill out this field ' } })}
+									className="border rounded w-full py-2 px-3 bg-white text-gray-700 focus:outline-none focus:shadow-outline transition duration-300"
+								>
+									{
+										currencies.map(currency => (
+											<option value={currency}>{currency}</option>
+										))
+									}
+								</select>
+								{errors?.currency?.message}
+							</div>
+						</div>
+						<div className="sm:ml-6">
+							<div className="mb-6">
+								<label htmlFor="compagnyName" className="block text-gray-700 text-sm font-bold mb-2">Compagny Name</label>
+								<input
+									id="compagnyName"
+									type="text"
+									placeholder=""
+									name="compagnyName"
+									className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition duration-300"
+									ref={register({ required: { value: true, message: 'Please fill out this field ' } })}
+								></input>
+								{errors?.compagnyName?.message}
+							</div>
 
-				<label htmlFor="kbis">KBIS</label>
-				<input 
-					id="kbis" 
-					type="text" 
-					placeholder="KBIS" 
-					name="KBIS" 
-					ref={register({ 
-						required: { value: true, message: 'Please fill out this field '},
-						minLength: {value: 3, message: 'The minlength is 3 '},
-						maxLength: {value: 10, message: 'The maxlength is 10 '}
-					})}
-				></input>
-				{ errors?.kbis?.message }
+							<div className="mb-6">
+								<label htmlFor="kbis" className="block text-gray-700 text-sm font-bold mb-2">KBIS</label>
+								<input
+									id="kbis"
+									type="text"
+									placeholder=""
+									name="KBIS"
+									className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition duration-300"
+									ref={register({
+										required: { value: true, message: 'Please fill out this field ' },
+										minLength: { value: 3, message: 'The minlength is 3 ' },
+										maxLength: { value: 10, message: 'The maxlength is 10 ' }
+									})}
+								></input>
+								{errors?.kbis?.message}
+							</div>
 
-				<label htmlFor="phone">Phone number</label>
-				<input 
-					id="phone" 
-					type="text"
-					placeholder="Phone" 
-					name="phone" 
-					ref={register}
-				></input>
-					 {/* ref={register({
-					 	 pattern: {
-					 		value: /d+/, 
-					 		message: "Please enter a valid phone number"
-		      console.log(authState);
-			 		} 
-						})} */}
-				{ errors?.phone?.message }
+							<div className="mb-6">
+								<label htmlFor="phone" className="block text-gray-700 text-sm font-bold mb-2">Phone number</label>
+								<input
+									id="phone"
+									type="text"
+									placeholder=""
+									name="phone"
+									className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition duration-300"
+									ref={register}
+								></input>
+								{/* ref={register({
+								pattern: {
+									value: /d+/, 
+									message: "Please enter a valid phone number"
+					console.log(authState);
+							} 
+								})} */}
+								{errors?.phone?.message}
+							</div>
+						</div>
+					</div>
 
-				<label htmlFor="confirmationURL">Confirmation URL</label>
-				<input 
-					id="confirmationURL" 
-					type="text" 
-					placeholder="Confirmation URL" 
-					name="confirmationURL" 
-					ref={register({ required: { value: true, message: 'Please fill out this field '}})}
-				></input>
-				{ errors?.confirmationURL?.message }
+					<div className="mb-6">
+						<label htmlFor="confirmationURL" className="block text-gray-700 text-sm font-bold mb-2">Confirmation URL</label>
+						<input
+							id="confirmationURL"
+							type="text"
+							placeholder=""
+							name="confirmationURL"
+							className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition duration-300"
+							ref={register({ required: { value: true, message: 'Please fill out this field ' } })}
+						></input>
+						{errors?.confirmationURL?.message}
+					</div>
 
-				<label htmlFor="redirectionURL">Redirection URL</label>
-				<input 
-					id="redirectionURL" 
-					type="text" 
-					placeholder="Redirection URL" 
-					name="redirectionURL" 
-					ref={register({ required: { value: true, message: 'Please fill out this field '}})}
-				></input>
-				{ errors?.redirectionURL?.message }
+					<div className="mb-6">
+						<label htmlFor="redirectionURL" className="block text-gray-700 text-sm font-bold mb-2">Redirection URL</label>
+						<input
+							id="redirectionURL"
+							type="text"
+							placeholder=""
+							name="redirectionURL"
+							className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition duration-300"
+							ref={register({ required: { value: true, message: 'Please fill out this field ' } })}
+						></input>
+						{errors?.redirectionURL?.message}
+					</div>
 
-				<label htmlFor="currency">Currency: </label>
-				<select id="currency" name="currency" ref={register({ required: {value: true, message: 'Please fill out this field '} })}>
-				{
-					currencies.map(currency => (
-						<option value={currency}>{currency}</option>
-					))
-				}
-				</select>
-				{ errors?.currency?.message }
-				<input type="submit" />
-			</form>
+					<input type="submit" className="w-full bg-green-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" value="Sign Up" />
+				</form>
+			</div>
 		</>
-    );
+	);
 };

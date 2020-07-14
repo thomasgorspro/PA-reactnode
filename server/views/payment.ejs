@@ -1,132 +1,122 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/stylesheets/output.css" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
-    <title>Payment</title>
-  </head>
 
-  <body>
-    <section class="flex flex-col justify-center items-center h-screen">
-      <div class="w-full max-w-lg mb-6 font-bold text-xl text-purple-600">
-        <h1>ENTER CREDITCARD DETAILS</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/stylesheets/tailwind.min.css" type="text/css" />
+  <title>Payment | Amazonax</title>
+  <link rel="icon" href="/images/amazon-icon.svg" />
+</head>
+
+<body class="bg-gray-100">
+
+  <header class="mb-20">
+    <nav class="bg-gradient flex items-center justify-center flex-wrap p-3">
+      <div class="flex items-center justify-center flex-shrink-0 text-white mr-6">
+        <img src="/images/amazon-icon.svg" width="20" class="mr-3">
+        <a href="/shop">
+          <span class="font-semibold text-xl tracking-tight">Amazonax</span>
+        </a>
       </div>
+    </nav>
+  </header>
+
+  <section class="flex flex-col justify-center items-center">
+    <div class="bg-white sm:shadow-md rounded sm:px-8 px-4 pt-6 pb-8">
+
+      <h1 class="w-full mb-6 font-bold text-xl text-purple-600">ENTER CREDITCARD DETAILS</h1>
 
       <form class="w-full max-w-lg">
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            >
-              Credit card number :
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Credit card number
             </label>
             <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white border border-gray-200 focus:border-gray-500"
-              type="text"
-              placeholder="**** **** **** ****"
-              name="ccn"
-            />
+              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition duration-300"
+              type="text" placeholder="**** **** **** ****" name="ccn" />
           </div>
           <div class="w-full md:w-1/4 px-3">
-            <label
-              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            >
-              Expires :
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Expires
             </label>
             <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              type="text"
-              placeholder="MM"
-              name="expiresFrom"
-            />
+              class="ppearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition duration-300"
+              type="text" placeholder="MM" name="expiresFrom" />
           </div>
           <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              type="text"
-              placeholder="YYYY"
-              style="margin-top: 25px;"
-              name="expiresTo"
-            />
+              class="ppearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition duration-300"
+              type="text" placeholder="YYYY" style="margin-top: 25px;" name="expiresTo" />
           </div>
-          <div class="w-full md:w-3/4 px-3 mb-6 md:mb-0">
-            <label
-              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            >
-              Name on credit card :
+          <div class="w-full md:w-3/4 px-3 mb-6 md:mb-0 mt-6">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Name on credit card
             </label>
             <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white border border-gray-200 focus:border-gray-500"
-              type="text"
-              name="cc-name"
-            />
+              class="ppearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition duration-300"
+              type="text" name="cc-name" />
           </div>
-          <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
-            <label
-              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            >
-              CVC :
+          <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0 mt-6">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              CVC
             </label>
             <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white border border-gray-200 focus:border-gray-500"
-              type="text"
-              name="cvc"
-            />
+              class="ppearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition duration-300"
+              type="text" name="cvc" />
           </div>
         </div>
       </form>
-      <div id="actions" class="w-full max-w-lg flex items-center justify-center">
-        <button
-          class="mx-6 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-2 px-4 rounded"
-          type="button"
-        >
+      <div id="actions" class="w-full flex items-center">
+        <a href="/shop/reject"
+          class="mx-6 border-transparent border-4 text-red-500 hover:text-red-800 text-sm py-2 px-4 rounded transition duration-300">
           Cancel
-        </button>
-        <button
-          id="pay"
-          class="mx-6 bg-teal-500 hover:ng-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="button"
-        >
-          Accept
+        </a>
+        <button id="pay"
+          class="mx-6 w-full bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300"
+          type="button">
+          Confirm
         </button>
       </div>
-    </section>
-  </body>
-  <script type="text/javascript">
-    const acceptBtn = document.getElementById("pay");
-    const CLIENTID = localStorage.getItem('client-token');
-    const CLIENTSECRET = localStorage.getItem('client-secret');
-    if (acceptBtn) {
-      acceptBtn.addEventListener("click", () => {
-        const div = document.createElement("div");
-        const appendTo = document.getElementById("actions");
-        div.classList.add("loader", "ease-linear", "rounded-full", "border-8", "border-t-8", "border-gray-200", "h-12", "w-12");
-        appendTo.appendChild(div);
-        const lastPathPart = window.location.pathname.split("/").slice(-1)[0];
-        fetch(`/payment/${lastPathPart}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Basic " + btoa(`${CLIENTID}:${CLIENTSECRET}`),
+    </div>
+  </section>
+</body>
+<script type="text/javascript">
+  const acceptBtn = document.getElementById("pay");
+  const CLIENTID = localStorage.getItem('client-token');
+  const CLIENTSECRET = localStorage.getItem('client-secret');
+  if (acceptBtn) {
+    acceptBtn.addEventListener("click", () => {
+      const div = document.createElement("div");
+      const appendTo = document.getElementById("actions");
+      div.classList.add("loader", "ease-linear", "rounded-full", "border-8", "border-t-8", "border-gray-200", "h-12", "w-12");
+      appendTo.appendChild(div);
+      const lastPathPart = window.location.pathname.split("/").slice(-1)[0];
+      fetch(`/payment/${lastPathPart}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Basic " + btoa(`${CLIENTID}:${CLIENTSECRET}`),
+        },
+        body: JSON.stringify({
+          bank: {
+            ccNumber: document.querySelector("input[name='ccn']").value,
+            expiresFrom: document.querySelector("input[name='expiresFrom']").value,
+            expiresTo: document.querySelector("input[name='expiresTo']").value,
+            ccName: document.querySelector("input[name='cc-name']").value,
+            cvc: document.querySelector("input[name='cvc']").value,
           },
-          body: JSON.stringify({
-            bank: {
-              ccNumber: document.querySelector("input[name='ccn']").value,
-              expiresFrom: document.querySelector("input[name='expiresFrom']").value,
-              expiresTo: document.querySelector("input[name='expiresTo']").value,
-              ccName: document.querySelector("input[name='cc-name']").value,
-              cvc: document.querySelector("input[name='cvc']").value,
-            },
 
-          })
-        }).then((res) => {
-          if (res.status === 200) {
-            window.location.replace("/shop/confirm");
-          }
-        });
+        })
+      }).then((res) => {
+        if (res.status === 200) {
+          window.location.replace("/shop/confirm");
+        }
       });
-    }
-  </script>
+    });
+  }
+</script>
+<script src="/card.js"></script>
+
 </html>

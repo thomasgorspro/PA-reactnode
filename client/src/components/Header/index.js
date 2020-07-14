@@ -21,8 +21,13 @@ const Header = () => {
                                 <span className="font-semibold text-2xl leading-none">Amazonax</span>
                                 <span className="text-xs font-bold leading-none">Dashboard</span>
                             </div>
-
                         </a>
+                        <div className="flex ml-10 text-md">
+                            <Link to="/admin/merchants-list" className="hover:text-gray-400 inline-block px-4 py-2 leading-none text-white mt-4 lg:mt-0 transition duration-300 mr-6"> Merchants List </Link>
+                        </div>
+                        <div className="flex text-md">
+                            <Link to="/merchant/backoffice" className="hover:text-gray-400 inline-block px-4 py-2 leading-none text-white mt-4 lg:mt-0 transition duration-300 mr-6"> Transactions List </Link>
+                        </div>
                     </div>
 
                     <div className="flex">

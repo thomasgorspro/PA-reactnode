@@ -29,7 +29,7 @@ const Schema = new mongoose.Schema(
       orderId: Number
     },
     operations: Array,
-    CompagnyName: String,
+    companyName: String,
   }
 );
 

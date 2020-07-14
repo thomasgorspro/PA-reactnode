@@ -10,6 +10,7 @@ import { Register as UserRegister} from "./components/Register/User";
 
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+import { Merchant as MerchantBackOffice  } from "./components/BackOffice/Merchant";
 
 const App = () => (
   <ThemeWrapper>
@@ -21,6 +22,7 @@ const App = () => (
             <Route path="/profile" component={Profile} />
             <Route path="/user/register" component={UserRegister} />
             <Route path="/merchant/register" component={MerchantRegister} />
+            <Route path="/merchant/backoffice" component={MerchantBackOffice} />
         </Switch>
       </Router>
     </RootProvider>

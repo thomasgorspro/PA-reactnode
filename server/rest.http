@@ -23,8 +23,12 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InR0dEB0ZXN0LmZyIiwiaWF0IjoxNTkzMjU0NjgzLCJleHAiOjE1OTMyNTgyODN9.w_gaY6Aj2lldQpZ8fIBaicfHUd0q4qkKPzVj2N1jark
 ###
 
+PUT http://localhost:3000/admin/validate_merchant/4
+
 GET http://localhost:3000/transactions
 ###
+
+GET http://localhost:3000/merchant
 
 DELETE http://localhost:3000/transactions/5f0cab189b90e70588f2c3d7
 ###

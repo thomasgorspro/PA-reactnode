@@ -11,12 +11,12 @@ const useAuth = () => {
 
   const actions = {
     login: async (data) => {
-      const { token, isMerchant, errors } = await login(data);
-      let payload = { errors, isMerchant, token, user: null }; 
+      const { token, errors } = await login(data);
+      let payload = { errors, token, user: null }; 
       if(token) {
         localStorage.setItem("token", token);
-        const { login } = jwtDecode(token);
-        payload.user = login;
+        const decodedPayload = jwtDecode(token);
+        payload.user = decodedPayload.user;
         payload.token = token;
       }
       dispatch({
@@ -26,7 +26,6 @@ const useAuth = () => {
     },
     logout: () => {
       localStorage.removeItem("token");
-      localStorage.removeItem("user");
       dispatch({ type: "LOGOUT" });
     },
     register: async (data, entity) =>  {
@@ -45,7 +44,6 @@ const useAuth = () => {
       return Boolean(authState.token);
     },
     user: () => authState?.user,
-    isMerchant: () => authState?.isMerchant,
     errors: () => authState?.errors
   };
 

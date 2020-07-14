@@ -38,11 +38,8 @@
               <td class="justify-center md:justify-end md:flex mt-6">
                 <div class="w-20 h-10">
                   <div class="relative flex flex-row w-full h-8">
-                    <input
-                      type="number"
-                      value="2"
-                      class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black"
-                    />
+                    <input id="quantityEarphone" type="number" value="2" data-id="1"
+                      class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
                   </div>
                 </div>
               </td>
@@ -52,7 +49,7 @@
                 </span>
               </td>
               <td class="text-right">
-                <span class="text-sm lg:text-base font-medium">
+                <span id="resultEarphone" class="text-sm lg:text-base font-medium">
                   20.00€
                 </span>
               </td>
@@ -73,11 +70,8 @@
               <td class="justify-center md:justify-end md:flex md:mt-4">
                 <div class="w-20 h-10">
                   <div class="relative flex flex-row w-full h-8">
-                    <input
-                      type="number"
-                      value="3"
-                      class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black"
-                    />
+                    <input id="quantityTesla" type="number" value="3" data-id="2"
+                      class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
                   </div>
                 </div>
               </td>
@@ -87,7 +81,7 @@
                 </span>
               </td>
               <td class="text-right">
-                <span class="text-sm lg:text-base font-medium">
+                <span id="resultTesla" class="text-sm lg:text-base font-medium">
                   148,800.03€
                 </span>
               </td>
@@ -108,11 +102,8 @@
               <td class="justify-center md:justify-end md:flex md:mt-8">
                 <div class="w-20 h-10">
                   <div class="relative flex flex-row w-full h-8">
-                    <input
-                      type="number"
-                      value="5"
-                      class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black"
-                    />
+                    <input id="quantityBic" type="number" value="5" data-id="3"
+                      class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
                   </div>
                 </div>
               </td>
@@ -122,7 +113,7 @@
                 </span>
               </td>
               <td class="text-right">
-                <span class="text-sm lg:text-base font-medium">
+                <span id="resultBic" class="text-sm lg:text-base font-medium">
                   7.50€
                 </span>
               </td>
@@ -139,10 +130,8 @@
                 >
                   Total
                 </div>
-                <div
-                  class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900"
-                >
-                  17,859.3€
+                <div id="totalPrice" class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
+                  49,611.51€
                 </div>
               </div>
               <button
@@ -173,6 +162,11 @@
 </section>
 
 <script>
+  const products = [
+    { id: 1, item: 'earphones', unitPrice: 10 },
+    { id: 2, item: 'Tesla', unitPrice: 49600.01 },
+    { id: 3, item: 'Bic 4 colour pen', unitPrice: 1.50 },
+  ];
   const checkout = document.getElementById("checkout");
   const CLIENTID = localStorage.getItem('client-token');
   const CLIENTSECRET = localStorage.getItem('client-secret');
@@ -192,27 +186,78 @@
     checkout.addEventListener("click", async () => {
       await sendData({
         customer: {
-          email: "customer.email@email.com",
+          shippingAddress: {
+            address: "68 Place Charles de Gaulle",
+            city: "VILLENEUVE-D",
+            zipcode: "59791",
+            country: "France",
+          },
+          billingAddress: {
+            address: "68 Place Charles de Gaulle",
+            city: "VILLENEUVE-D",
+            zipcode: "59791",
+            country: "France",
+          },
         },
-        billing_adress: {
-          address: "68 Place Charles de Gaulle",
-          city: "VILLENEUVE-D",
-          zipcode: "59791",
-          country: "France",
-        },
-        billing_adress: {
-          address: "68 Place Charles de Gaulle",
-          city: "VILLENEUVE-D",
-          zipcode: "59791",
-          country: "France",
-        },
-        shoppingCart: ["article 1", "article 2"],
-        price: "150",
+        cart: products.map((product) => {
+          const { id, ...newObj } = product;
+          return { ...newObj, quantity: getQuantity(product.id) };
+        }),
+        totalPrice: document.getElementById('totalPrice').innerHTML.replace(/[^0-9.-]+/g,""),
+        currency: "EUR",
         metadata: {
-          "order_id": 1
+          customerId: 1,
+          orderId: Date.now()
         }
-      }).then((data) => window.location.replace(data.redirectUrl));
+      }).then((data) => {
+        window.location.replace(data.redirectUrl)
+      });
     });
+  }
+
+  const getQuantity = (productId) => {
+    return Number(document.querySelector(`[data-id='${productId}']`).value);
+  }
+
+  const inputEarphone = document.getElementById("quantityEarphone")
+  inputEarphone.addEventListener('keyup', (e) => {
+    const price = 10;
+    calculPrice(inputEarphone, resultEarphone, price)
+  })
+  inputEarphone.addEventListener('mouseout', (e) => {
+    const price = 10;
+    calculPrice(inputEarphone, resultEarphone, price)
+  });
+  const inputTesla = document.getElementById("quantityTesla");
+  inputTesla.addEventListener('keyup', (e) => {
+    const price = 49600.01;
+    calculPrice(inputTesla, resultTesla, price)
+  })
+  inputTesla.addEventListener('mouseout', (e) => {
+    const price = 49600.01;
+    calculPrice(inputTesla, resultTesla, price)
+  });
+  const inputBic = document.getElementById("quantityBic");
+  inputBic.addEventListener('keyup', (e) => {
+    const price = 1.5;
+    calculPrice(inputBic, resultBic, price)
+  })
+  inputBic.addEventListener('mouseout', (e) => {
+    const price = 1.5;
+    calculPrice(inputBic, resultBic, price)
+  });
+
+  const calculPrice = (input, result, price) => {
+    result.innerHTML = (parseFloat(input.value) * price) + "€";
+    updateTotalPrice();
+  }
+
+  const updateTotalPrice = () => {
+    const total =
+            parseFloat(resultEarphone.textContent.substr(0, resultEarphone.textContent.length - 1))
+            + parseFloat(resultTesla.textContent.substr(0, resultTesla.textContent.length - 1))
+            + parseFloat(resultBic.textContent.substr(0, resultBic.textContent.length - 1));
+    totalPrice.innerHTML = total + "€";
   }
 </script>
 <%- include('templates/footer') %>

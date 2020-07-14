@@ -4,6 +4,7 @@ const SecurityRouter = require("./security");
 const PspRouter = require("./psp");
 const ShopRouter = require("./shop");
 const PaymentRouter = require("./payment");
+const OperationRouter = require("./operations");
 const verifyToken = require("../middlewares/verifyToken");
 
 const RouterManager = (app) => {
@@ -15,6 +16,7 @@ const RouterManager = (app) => {
     // .use(verifyToken)
     .use('/merchant', MerchantRouter)
     .use('/transactions', TransactionRouter)
+    .use('/operations', OperationRouter)
 }
 
 module.exports = RouterManager;

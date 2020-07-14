@@ -6,10 +6,9 @@
       <table id="order-table" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
         <thead>
           <tr>
-            <th data-priority="1">ID</th>
-            <th data-priority="2">Email</th>
-            <th data-priority="3">Price</th>
-            <th data-priority="4">Refund</th>
+            <th data-priority="1">Order ID</th>
+            <th data-priority="2">Price</th>
+            <th data-priority="3">Transaction</th>
           </tr>
         </thead>
         <tbody>
@@ -17,13 +16,13 @@
             <% orders.forEach((order, index) => { %>
 
             <tr>
-              <td><%= index %></td>
-              <td><%= order.Customer.email %></td>
-              <td><%= order.Price %></td>
+              <td><%= order.metadata.orderId %></td>
+              <td><%= order.totalPrice + ' ' + order.currency %></td>
               <td>
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                  Refund
+                <a href="orders/<%= order._id %> "><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  Detail
                 </button>
+              </a>
               </td>
             </tr>
             
@@ -33,13 +32,13 @@
 
       </table>
 
-
     </div>
+  </div>
 
 </section>
 
-<script type="application/javascript">
-  var dataTable = new DataTable("#order-table", {
+<script type="text/javascript">
+  let dataTable = new DataTable("#order-table", {
     responsive: true,
   });
 </script>

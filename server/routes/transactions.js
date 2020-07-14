@@ -1,6 +1,5 @@
 const express = require("express");
 const Transaction = require("../models/mongoose/Transaction");
-const basicAuth = require("../middlewares/basicAuth");
 
 const router = express.Router();
 
@@ -32,10 +31,10 @@ router
     );
   })
 
-  // GET all operations of a transaction
-  .get("/:id/operations", (req, res) => {})
-
-  // GET an operation of a transaction
-  .get("/:id/operations/:id_op", (req, res) => {});
+  .put("/:id", (req, res) => {
+    Transaction.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    }).then((data) => res.json(data))
+  })
 
 module.exports = router;

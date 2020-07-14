@@ -26,4 +26,37 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InR0dEB0Z
 GET http://localhost:3000/transactions
 ###
 
-DELETE http://localhost:3000/transactions/5f0c7c8801acc801b7ded8ea
+DELETE http://localhost:3000/transactions/5f0cab189b90e70588f2c3d7
+###
+
+POST http://localhost:3000/transactions
+Content-Type: application/json
+Accept: application/json
+
+{
+    "customer": {
+        "shippingAddress": {
+          "address": "68 Place Charles de Gaulle",
+          "city": "VILLENEUVE-D",
+          "zipcode": "59791",
+          "country": "France"
+        },
+        "billingAddress": {
+            "address": "68 Place Charles de Gaulle",
+            "city": "VILLENEUVE-D",
+            "zipcode": "59791",
+            "country": "France"
+        }
+    },
+    "cart": [
+        { "item": "item1", "unitPrice": 1000, "quantity": 5 },
+        { "item": "item1", "unitPrice": 1000, "quantity": 5 },
+        { "item": "item1", "unitPrice": 1000, "quantity": 5 }
+    ],
+    "totalPrice": 14000,
+    "currency": "euro",
+    "metadata": {
+      "customerId": 1,
+      "orderId": 15146
+    }
+}

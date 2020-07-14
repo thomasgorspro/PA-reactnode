@@ -2,7 +2,6 @@ const express = require("express");
 const path = require('path');
 const cors = require('cors');
 const RouterManager = require("./routes");
-const ShopRouterManager = require("./routes/shop");
 
 const app = express();
 

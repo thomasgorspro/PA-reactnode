@@ -15,11 +15,10 @@ const useAuth = () => {
       let payload = { errors, token, user: null }; 
       if(token) {
         localStorage.setItem("token", token);
-        const { email: user } = jwtDecode(token);
-        payload.user = user; 
+        const decodedPayload = jwtDecode(token);
+        payload.user = decodedPayload.user;
         payload.token = token;
       }
-      console.log(payload);
       dispatch({
         type: "LOGIN",
         payload
@@ -27,12 +26,10 @@ const useAuth = () => {
     },
     logout: () => {
       localStorage.removeItem("token");
-      localStorage.removeItem("user");
       dispatch({ type: "LOGOUT" });
     },
-    register: async (data) =>  {
-      const res = await register(data);
-      console.log(res);
+    register: async (data, entity) =>  {
+      const res = await register(data, entity);
       dispatch({
         type: "REGISTER",
         payload: {

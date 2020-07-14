@@ -1,8 +1,8 @@
-import jwt_decode from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 export const initialState = {
   user: localStorage.getItem("token")
-    ? jwt_decode(localStorage.getItem("token"))
+    ? (jwtDecode(localStorage.getItem("token")).user)
     : null,
   token: localStorage.getItem("token"),
   errors: {} 

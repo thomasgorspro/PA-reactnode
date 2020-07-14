@@ -26,7 +26,7 @@ Merchant.init(
         unique: true,
         validate: {
             isEmail: {
-                msg: "Email non valide"
+                msg: "Invalid Email"
             }
         }
     },
@@ -56,7 +56,7 @@ Merchant.init(
     confirmed: {
       type: BOOLEAN,
       allowNull: false,
-      defaultValue: true,
+      defaultValue: false,
     },
   },
   {

@@ -5,6 +5,7 @@ const PspRouter = require("./psp");
 const ShopRouter = require("./shop");
 const PaymentRouter = require("./payment");
 const OperationRouter = require("./operations");
+const AdminRouter = require("./admin");
 const verifyToken = require("../middlewares/verifyToken");
 
 const RouterManager = (app) => {
@@ -13,7 +14,8 @@ const RouterManager = (app) => {
     .use('/payment', PaymentRouter)
     .use("/psp", PspRouter)
     .use("/", SecurityRouter)
-    // .use(verifyToken)
+    .use(verifyToken)
+    .use("/admin", AdminRouter)
     .use('/merchant', MerchantRouter)
     .use('/transactions', TransactionRouter)
     .use('/operations', OperationRouter)

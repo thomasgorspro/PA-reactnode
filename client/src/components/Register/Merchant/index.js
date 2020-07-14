@@ -1,15 +1,15 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 import { Redirect } from 'react-router-dom';
 const currencies = ['euro', 'livre', 'yen', 'wan', 'dollar']
 
-const Register = () => {
+export const Register = () => {
 	const { actions, selectors } = useAuth();
 	const { handleSubmit, register, errors } = useForm();
 		
     const onSubmit = async (data) => {
-		await actions.register(data)
+		await actions.register(data, 'merchant');
 	};
 
 	const formatErrors = errors => (
@@ -21,7 +21,7 @@ const Register = () => {
     return (
 		<>
 			{!selectors.errors() && <Redirect to="/login" />}
-			{ formatErrors(selectors.errors()) }
+			{ selectors.errors() && formatErrors(selectors.errors()) }
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<label htmlFor="compagnyName">Compagny Name</label>
 				<input 
@@ -120,5 +120,3 @@ const Register = () => {
 		</>
     );
 };
-
-export default Register;

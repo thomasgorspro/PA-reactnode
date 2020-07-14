@@ -28,7 +28,8 @@ const Schema = new mongoose.Schema(
       customerId: Number,
       orderId: Number
     },
-    operations: Array
+    operations: Array,
+    CompagnyName: String,
   }
 );
 

@@ -15,7 +15,7 @@ const ThemeWrapper = ({ children }) => (
         flex: 1,
         display: "flex",
         flexDirection: "column",
-        // backgroundColor: "#B77E00",
+        backgroundColor: "#555555",
       }}
     >
       {children}

@@ -6,6 +6,7 @@ const router = express.Router();
 router
   // CGET all transactions
   .get("/", (req, res) => {
+    console.log(req.query);
     Transaction.find(req.query).then((data) => res.json(data));
   })
   

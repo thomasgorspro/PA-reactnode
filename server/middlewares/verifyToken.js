@@ -30,8 +30,8 @@ const verifyToken = (req, res, next) => {
 
     Merchant.findOne({
       where: {
-        clientToken: clientToken,
-        clientSecret: clientSecret,
+        clientToken,
+        clientSecret,
       },
     })
       .then((data) => {

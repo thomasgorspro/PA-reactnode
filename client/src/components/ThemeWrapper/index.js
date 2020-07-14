@@ -11,9 +11,7 @@ const ThemeWrapper = ({ children }) => (
       <span></span>
       <span></span>
     </div>
-    <div
-      className="container mx-auto"
-    >
+    <div>
       {children}
     </div>
   </div>

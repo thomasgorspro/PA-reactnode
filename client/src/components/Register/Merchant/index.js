@@ -21,10 +21,10 @@ export const Register = () => {
 	return (
 		<>
 			{!selectors.errors() && <Redirect to="/login" />}
-			{ selectors.errors() && formatErrors(selectors.errors()) }
 			<div className="w-full flex items-center justify-center">
 				<form onSubmit={handleSubmit(onSubmit)} className="sm:w-auto w-full sm:bg-white sm:shadow-md rounded sm:px-8 px-4 pt-6 pb-8 mb-4">
-					<h1 class="text-2xl mb-6 text-center w-full font-bold text-purple-600">Register as Merchant</h1>
+					<h1 className="text-2xl mb-6 text-center w-full font-bold text-purple-600">Register as Merchant</h1>
+					{ selectors.errors() && formatErrors(selectors.errors()) }
 					<div className="sm:flex items-center justify-between">
 						<div>
 							<div className="mb-6">

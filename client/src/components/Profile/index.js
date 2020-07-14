@@ -8,7 +8,6 @@ const Profile = () => {
         <>
             <div className="w-full flex items-center justify-center">
                 <div className="sm:w-auto w-full sm:bg-white sm:shadow-md rounded sm:px-8 px-4 pt-6 pb-8 mb-4">
-                    {console.log(selectors.user())}
                     <div className="flex flex-col">
                         <span className="text-xl text-purple-600 font-bold text-center mb-6">{selectors.user().firstname} {selectors.user().lastname}</span>
                         <span className="text-base">Username : {selectors.user().username}</span>

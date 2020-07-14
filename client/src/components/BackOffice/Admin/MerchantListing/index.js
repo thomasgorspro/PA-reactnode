@@ -23,7 +23,7 @@ const MerchantListing = () => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }).then((user) => setMerchants([{...merchants, confirmed: user.confirmed}]));
+    });
   };
 
   const deleteMerchant = (id) => {

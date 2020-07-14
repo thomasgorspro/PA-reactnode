@@ -3,23 +3,33 @@ const db = require('../../lib/mongoose');
 
 const Schema = new mongoose.Schema(
   {
-    Customer: {
-      email: String
-    },
-    Billing: {
-      BillingAddress: {
-        Firstname: String,
-        Lastname: String,
-        Address: String,
-        City: String,
-        Zipcode: String,
-        Country: String,
+    customer: {
+      shippingAddress: {
+        address: String,
+        city: String,
+        zipcode: String,
+        country: String,
+      },
+      billingAddress: {
+        address: String,
+        city: String,
+        zipcode: String,
+        country: String,
       }
     },
+    cart: [{
+      unitPrice: Number,
+      item: String,
+      quantity: Number,
+    }],
+    totalPrice: String,
+    currency: String,
+    metadata: {
+      customerId: Number,
+      orderId: Number
+    },
+    operations: Array,
     CompagnyName: String,
-    Shipping: String,
-    ShoppingCart: Array,
-    TotalPrice: String,
   }
 );
 

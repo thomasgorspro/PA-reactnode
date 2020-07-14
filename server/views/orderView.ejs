@@ -40,10 +40,8 @@
                     data-refunded="<%= article.refunded %>">
               Refunded
             </button>
-
           <% } %>
         </p>
-
       <% }); %>
 
       <p><b>Price: </b><%= order.TotalPrice %></p>
@@ -86,7 +84,6 @@
       }
     })
   }
-
   const fullRefundButton = document.getElementById("fullRefund");
   fullRefundButton.addEventListener('click', (e) => {
     fetch("/transactions/" + transactionId, {

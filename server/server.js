@@ -2,7 +2,6 @@ const express = require("express");
 const path = require('path');
 const cors = require('cors');
 const RouterManager = require("./routes");
-const ShopRouterManager = require("./routes/shop");
 
 const app = express();
 
@@ -14,7 +13,6 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(express.json());
 
-ShopRouterManager(app);
 RouterManager(app);
 
 app.listen(process.env.SERVER_PORT || 3000, () =>

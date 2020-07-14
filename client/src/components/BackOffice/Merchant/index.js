@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import useAuth from "../../../hooks/useAuth";
-import { Redirect } from 'react-router-dom';
-import Dashboard from '../../Dashboard';
 
 export const Merchant = () => {
     const [transactions, setTransactions] = useState({});
@@ -35,7 +32,6 @@ export const Merchant = () => {
             <span> You need to be a connected authorize merchant</span> 
         :
             <>
-                <Dashboard />
                 <div>
                     <h1>Transactions</h1>
                     {formatData(transactions)}

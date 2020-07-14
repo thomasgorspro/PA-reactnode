@@ -20,8 +20,10 @@ export const Merchant = () => {
     });
 
     const formatData = data => {
-        Object.keys(data).map(key => {
-        return <span> { key }: { data[key] } </span>
+        return data.map(transaction => {
+            Object.keys(transaction).map(key => {
+            <span>{key} : {transaction[key] }</span>
+            });
         });
     };
 
